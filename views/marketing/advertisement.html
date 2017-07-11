@@ -7,10 +7,6 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link href="../../css/public.css" rel="stylesheet" />
 		<link href="../../css/index.css" rel="stylesheet" />
-		<script src="../../js/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init()
-		</script>
 	</head>
 	<body style="background: #f8f8f8;">
 		<div class="mui-content">
@@ -20,7 +16,35 @@
 		        </a>
 		    </div>
 		    <div class="list_ula">
-		        <div style="height: 48px;" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" data-scroll="1">
+		    	<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="category mui-control-item mui-active" href="#item1mobile" data-wid="tab-top-subpage-1.html">
+							360
+						</a>
+						<a class="category mui-control-item" href="#item2mobile" data-wid="tab-top-subpage-2.html">
+							百度
+						</a>
+						<a class="category mui-control-item" href="#item3mobile" data-wid="tab-top-subpage-3.html">
+							今日头条
+						</a>
+						<a class="category mui-control-item" href="#item4mobile" data-wid="tab-top-subpage-4.html">
+							神马
+						</a>
+						<a class="category mui-control-item" href="#item5mobile" data-wid="tab-top-subpage-5.html">
+							搜狗
+						</a>
+						<a class="category mui-control-item" href="#item6mobile" data-wid="tab-top-subpage-6.html">
+							腾讯广点通
+						</a>
+						<a class="category mui-control-item" href="#item6mobile" data-wid="tab-top-subpage-6.html">
+							智慧推
+						</a>
+						<a class="category mui-control-item" href="#item6mobile" data-wid="tab-top-subpage-6.html">
+							新浪
+						</a>
+					</div>
+				</div>
+		        <!--<div style="height: 48px;" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" data-scroll="1">
 		            <div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
 		                <a href="http://m.meijiexia.com/guanggao?cate=3" style="line-height: 47px;" class="mui-control-item">
 		                    360                        
@@ -47,7 +71,7 @@
 		                	新浪
 		                </a>
 		            </div>
-		        </div>
+		        </div>-->
 		    </div>
 		    <div class="list_li" id="loaddata">
 		        <ul>
@@ -82,5 +106,12 @@
                 </div>
 			</div>
 		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+					
+			});
+		</script>
 	</body>
 </html>
