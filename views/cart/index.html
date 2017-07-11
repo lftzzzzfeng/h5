@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/public.css" rel="stylesheet" />
+		<link href="../../css/index.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav ss_c">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
+		    <p class="hede_p">购物车</p>
+		</header>
+		<div class="mui-content" style="background: #f8f8f8;">
+          	<div class="p_js">
+          		<img src="http://m.meijiexia.com/statics/new/images/cart_6.jpg" />
+          		<p class="js_p">您正在安全购物环境中，请放心支付</p>
+          		<a href="javascript:void(0);" id="yichu">移除</a>
+    		</div>
+            <div class="cart_cp" id="divshow_searpro_42">
+          		<div class="cart_l">
+              		<div class="checkboxbordermCk inputb" id="ck_searpro_42" tid="searpro_42" tck="1"></div>
+                      	<img src="http://img.meijiexia.com/proimg/201612/20161220525289.jpg" style="width:80px;"/>
+                </div>
+          		<div class="cart_r">
+                  	<p class="cart_p"><a href="http://m.meijiexia.com/sousuo-42.html">【一般行业】百度知道/知道问答/口碑推广/问答推广/问答营销(600元/100组)</a></p>
+                  	<div class="cart_jg">
+              			<p class="cart_q" style="font-size: 14px;">¥520.00</p>
+              			<input type="hidden" value="520.00" id="v_searpro_42">
+              			<div class="cart_in">
+                  			<div class="mui-numbox" data-numbox-min='1' style="height: 30px;width:117px;">
+                    			<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+                    			<input id="inp_searpro_42" tid="searpro_42" class="mui-input-numbox" type="number" value="1" />
+                    			<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+                  			</div>
+              			</div>
+            		</div>
+          		</div>
+    		</div>
+            <div class="jylc">
+          		<p>交易流程</p>
+          		<div class="jylc_con">
+		            <ul>
+		              <li><img src="http://m.meijiexia.com/statics/new/images/01.png" /><p>选择产品</p></li>
+		              <li><img src="http://m.meijiexia.com/statics/new/images/2.png" /><p>支付购买</p></li>
+		              <li><img src="http://m.meijiexia.com/statics/new/images/3.png" /><p>提交需求</p></li>
+		              <li><img src="http://m.meijiexia.com/statics/new/images/4.png" /><p>订单执行</p></li>
+		              <li style="margin-right: 0;"><img src="http://m.meijiexia.com/statics/new/images/5.png" /><p>订单完成</p></li>
+		            </ul>
+          		</div>
+    		</div>
+      	</div>
+    	<div class="cart_foot" style="border-top: 1px solid #e5e5e5;">
+      		<div class="cart_footleft" style="width:20%;">
+        		<div class="checkboxborderm inputa" style="margin-top: 14px;" tip="searpro_42"></div>全选
+      		</div>
+	      	<div class="cart_footmid" style="width:45%;">
+	          	<p>合计：<span id="allPrice"></span></p>
+	      	</div>
+      		<div id="divCheckout" class="cart_footright"><a href="javascript:void(0);">去结算(<span id="allNum"></span>)</a></div>
+    	</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				mui(document.body).on('tap', '#divCheckout', function() {
+					mui.openWindow({
+						url: 'checkout.html',
+						id: 'cart/checkout.html'
+					});	
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title></title>
+	    <script src="../../js/mui.min.js"></script>
+	    <link href="../../css/mui.min.css" rel="stylesheet"/>
+	    <link href="../../css/public.css" rel="stylesheet"/>
+	    <link href="../../css/index.css" rel="stylesheet"/>
+	    <style type="text/css">
+			.mui-content>.mui-table-view:first-child {
+				margin-top: -1px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="pullrefresh" class="mui-content">
+		    <div class="index_banner" style="margin-top: 5px;margin-bottom: 0px;">
+		        <a href="javascript:void(0);">
+		            <img src="../../img/ad/baike.jpg" title="百度百科 服务费仅需4500元"/>
+		        </a>
+		    </div>
+		    <div class="list_ula">
+		        <div style="height: 48px;" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+		            <div class="mui-scroll" id="divCategorySlider">
+	            	 	<a href="javascirpt:void(0);" data-category-id="15" style="line-height: 47px;" class="mui-control-item category">
+                        	必应                        
+	            	 	</a>
+            			<a href="javascirpt:void(0);" data-category-id="13" style="line-height: 47px;" class="mui-control-item category">
+                    		神马                       
+            			</a>
+                    	<a href="javascirpt:void(0);" data-category-id="12" style="line-height: 47px;" class="mui-control-item category">
+                        	360                        
+                    	</a>
+                    	<a href="javascirpt:void(0);" data-category-id="10" style="line-height: 47px;" class="mui-control-item category">
+                        	百度                        
+                    	</a>
+                		<a href="javascirpt:void(0);" data-category-id="11" style="line-height: 47px;" class="mui-control-item category">
+                    		搜狗                        
+                		</a>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="list_li" id="loaddata">
+		        <ul>
+		            <li class="u_li category" data-category-id="0"><a href="" style="color:#fe6401;">综合</a></li>
+		            <li>
+		                <a href="javascirpt:void(0);" style="position: relative;">
+		                    <p class="liss_p" style="margin-bottom: 0px;">价格</p>
+		                    <div class="li_d">
+		                        <img style="width:8px;" src="../../img/list_a.jpg"><br/>
+		                        <img style="width:8px;" src="../../img/list_b.jpg">
+		                    </div>
+		                </a>
+		            </li>
+		            <li><a href="javascirpt:void(0);">时间</a></li>
+		        </ul>
+		        <div id="divListCategoryItems">
+		          	<!--<div class="index_tcp">
+		              	<a href="abc">
+		                  	<img style="width:80px;" alt="" title="" src="http://img.meijiexia.com/prologo/20170614388899.jpg" />
+		              	</a>
+		              	<div class="index_tcpr">
+		        	      	<p class="t_p"><a href="">资信认证+实名认证+普通官网认证(9888元/年)</a></p>
+		            	  	<div class="t_pp">
+		                      	<p>¥1111元</p>
+		                  	</div>
+		              	</div>
+		              	<div class="checkboxbordermCk" tid="1" tab="searpro" pid=""></div>
+		          	</div>-->
+		        </div>
+		        <!--<div class="dropload-down"><div class="dropload-refresh">↑上拉加载更多</div></div>-->
+		    </div>
+		</div>
+		
+	  	<script type="text/javascript">
+	  		var categories = '';
+	  		var pageNumber = 1;
+	  		var categoryId = 0;
+	  		var searchTable = 'search';
+//	  		var uid = plus.storage.getItem('uid');
+	  		var uid = 0;
+	  		
+	  		var loadType = 1;
+	  		
+	  		mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						auto: false,
+						callback: pulldownRefresh
+					},
+					up: {
+						height:50,
+						auto:false,
+						contentrefresh : "正在加载...",
+						contentnomore:'上拉刷新',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+//			function loadCategories() {
+//				mui.ajax('http://m.meijiexia.com/android/loaddata', {
+//					data:{
+//						p: pageNumber,
+//						cate: 0,
+//						
+//					},
+//					dataType:'json',
+//					type:'post',
+//					timeout:30000,
+//					headers:{'Content-Type':'application/json'},
+//					success:loadCategoriesSuccess,
+//					error:function(xhr, type, errorThrown){
+//						console.log(JSON.stringify(errorThrown));
+//					}
+//				});
+//				
+//				categories = '[{"id": "15","name": "必应","icon": "icon/54855574cc2654209e69c5d4f07c75cb.png"},{"id": "14","name": "谷歌","icon": "icon/1b576f79b22d0ac1330c18ed27f4cdb1.png"},{"id": "13","name": "神马","icon": "icon/52294520cc082391767bd669f8c01d3d.jpg"},{"id": "12","name": "360","icon": "icon/2e59ddb610028d58969071b5d80d8d1c.jpg"},{"id": "11","name": "搜狗","icon": "icon/2a28b6d2ea67cf782bf3826befdadfe3.jpg"}]';
+//				loadCategoriesSuccess(categories);
+//			}
+			
+//			function loadCategoriesSuccess(result) {
+//				var content = '';
+//				categories = '[{"id": "15","name": "必应","icon": "icon/54855574cc2654209e69c5d4f07c75cb.png"},{"id": "14","name": "谷歌","icon": "icon/1b576f79b22d0ac1330c18ed27f4cdb1.png"},{"id": "13","name": "神马","icon": "icon/52294520cc082391767bd669f8c01d3d.jpg"},{"id": "12","name": "360","icon": "icon/2e59ddb610028d58969071b5d80d8d1c.jpg"},{"id": "11","name": "搜狗","icon": "icon/2a28b6d2ea67cf782bf3826befdadfe3.jpg"}]';
+//				var categories = JSON.parse(categories);
+//				var divCategorySlider = document.getElementById("divCategorySlider");
+//				
+//				if (categories) {
+//					for (var categoriesCounter = 0; categoriesCounter < categories.length; categoriesCounter++) {
+//						content += "<a class=\"mui-control-item category\" data-category-id=\""+categories[categoriesCounter].id+"\" href=\"#item1mobile\" data-wid=\"tab-top-subpage-1.html\">";
+//						content += categories[categoriesCounter].name;
+//						content += "</a>";
+//					}
+//				}
+//				
+//	  			divCategorySlider.innerHTML = content;
+//	  		}
+			
+			function loadCategoryItems(categoryId) {
+				mui.ajax('http://m.meijiexia.com/android/loaddata', {
+					data:{
+						p: pageNumber,
+						cate: categoryId,
+						tab: searchTable,
+						uid: uid
+					},
+					dataType:'json',
+					type:'post',
+					success:loadCategoryItemsSuccess,
+					error:function(xhr, type, errorThrown){
+						console.log(JSON.stringify(errorThrown));
+					}
+				});
+			}
+			
+			function loadCategoryItemsSuccess(result) {
+				if (result) {
+					var categoryItems = result.list;
+					if (categoryItems) {
+						var content = '';
+						var divListCategoryItems = document.getElementById('divListCategoryItems');
+						
+						for (var categoryItemCounter = 0; categoryItemCounter < categoryItems.length; categoryItemCounter++) {
+							content += "<div class=\"index_tcp\">";
+							content += "<a href=\""+categoryItems[categoryItemCounter].url+"\">";
+							content += "<img style=\"width:80px;\" alt=\""+categoryItems[categoryItemCounter].title+"\" title=\""+categoryItems[categoryItemCounter].title+"\" src=\""+categoryItems[categoryItemCounter].imgurl+"\" />";
+							content += "</a>";
+							content += "<div class=\"index_tcpr\">";
+							content += "<p class=\"t_p\"><a href=\"\">"+categoryItems[categoryItemCounter].title+"</a></p>";
+							content += "<div class=\"t_pp\">";
+							content += "<p>¥"+categoryItems[categoryItemCounter].price+"元</p>";
+							content += "</div>";
+							content += "</div>";
+							content += "<div class=\"addToCart checkboxborderm"+(categoryItems[categoryItemCounter].show ? "Ck" : "")+"\" tid=\""+categoryItems[categoryItemCounter].show+"\" tab=\"searpro\" pid=\""+categoryItems[categoryItemCounter].id+"\"></div>";
+							content += "</div>";
+						}
+						
+						switch (loadType) {
+							case 1:
+								divListCategoryItems.innerHTML = content;
+								break;
+							case 2:
+								mui('#pullrefresh').pullRefresh().endPulldown();
+								divListCategoryItems.innerHTML = divListCategoryItems.innerHTML + content;
+								break;
+							case 3:
+								mui('#pullrefresh').pullRefresh().endPullup();
+								if (pageNumber == 3) {
+									mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
+								}
+								divListCategoryItems.innerHTML = divListCategoryItems.innerHTML + content;
+								break;
+							default:
+						}
+							
+					}
+				}
+			}
+			
+			function pulldownRefresh() {
+				pageNumber++;
+				loadType = 2;
+				loadCategoryItems(categoryId);
+			}
+			
+			function pullupRefresh() {
+				pageNumber++;
+				loadType = 3;
+				loadCategoryItems(categoryId);
+			}
+	  		
+	  		mui.plusReady(function() {
+//	  			loadCategories();
+	  			loadCategoryItems(categoryId, loadType);
+	  			
+	  			mui(document.body).on('tap', ".category", function() {
+	  				pageNumber = 1;
+	  				loadType = 1;
+	  				categoryId = this.getAttribute('data-category-id');
+	  				loadCategoryItems(categoryId);
+	  			});
+	  			
+	  			mui(document.body).on("tap", ".index_tcpr", function() {
+					mui.openWindow({
+						url: '../details.html',
+					    id: 'details.html',
+					    show: {
+					      event:'titleUpdate'
+					    },
+					    waiting:{
+					      	autoShow:true,//自动显示等待框，默认为true
+					      	title:'正在加载...',//等待对话框上显示的提示内容
+					      	options:{
+				      			background:'#8f8f94',
+					        	loading:{display:'inline'}
+					      	}
+					    },
+					    extras:{
+					    	name:this.children[0].getAttribute('href')
+					    }
+					});
+  				});
+  				
+  				mui(document.body).on('tap', '.addToCart', function() {
+  					var marketingTemplate = mui.preload({
+					    url:'views/template/marketing.html',
+					    id:'templateMarketing.html',
+					    styles:{
+					        popGesture:"hide"
+					    }
+					});
+  					
+					mui.fire(marketingTemplate, "updateCart");
+  				});
+	  		});
+	  	</script>
+	</body>
+</html>

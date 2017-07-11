@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/public.css" rel="stylesheet" />
+		<link href="../../css/help.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav ss_c">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
+		    <p class="hede_p">充值</p>
+		</header>
+		<div class="mui-content">
+			<form action="http://m.meijiexia.com/service/recharge" id="payForm" method="post">
+				<div class="cz_p">支付方式</div>
+			    <div class="cz_zf" style="height: 50px;min-height: 50px;padding: 0px;width: 100%;">
+                    <div class="cz_zfl" id="pay_wx"><img src="http://m.meijiexia.com/statics/images/alipay2-2.png">支付宝</div>
+		            	<input type="hidden" name="paytype" value="alipay">
+		            </div>
+			    <div class="cz_p">选择金额</div>
+			    <div class="cz_zf">
+		    	   	<div class="share_b">
+		            	<input type="radio" name="radio1" id="radio1_1" value="radio1" style="display:none;"  />
+		            	<div class="share_radio" id="baijin">1000元(白金会员)<br/>享全场平均95折</div>    
+		          	</div>
+		          	<div class="share_b">
+			            <input type="radio" name="radio1" id="radio1_1" value="radio1" style="display:none;"  />
+			            <div class="share_radio" id="zuanshi">5000元(钻石会员)<br/>享全场平均95折</div>    
+		          	</div>
+			    </div>
+			    <div class="cz_p">
+			    	<p>充值金额</p>
+			        <input type="number" name="money" id="jiage" placeholder="可输入其他金额">
+			    </div>
+			    <div class="je_btn">
+			    	<input type="button" id="chongzhi" value="在线充值">
+			    </div>
+		    </<form>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+</html>

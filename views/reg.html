@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/common.css" rel="stylesheet"/>
+    <link href="../css/reg.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+</head>
+
+    <body>
+        <header class="mui-bar mui-bar-nav ss_c">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
+            <p class="hede_p">会员注册</p>
+        </header>
+        <div class="mui-content">
+            <div class="ul_li">
+
+                <div class="paness">
+                    <div class="panea" style="display: block;">
+                        <form action="" id="logForm" method="post">
+                        <div class="login_con">
+                            <div class="login_cond">
+                                <img src="../img/sj.png" />
+                                <input type="text" name="sms_tel" id="sms_tel" placeholder="请输入您的手机号" />
+                            </div>
+                            <div class="login_cona" style="border-bottom: 1px solid #eee;">
+                                <img src="../img/yzm.png" />
+                                <input type="text" class="lo_in" name="verify" id="verify" placeholder="请输入右侧验证码" />
+                                <div id="verifyChange" style="float: right; margin: 0px 1% 0px 0px;">
+                                    <img id="verifyImg" src="http://m.meijiexia.com/captcha/1499225743.0678.png" style="width: 70px; height: 40px; margin-top: 5px;">
+                                </div>
+                            </div>
+                            <div class="login_cona" style="border-bottom: 1px solid #eee;">
+                                <img src="../img/dx.png" />
+                                <input type="text" class="lo_in" name="sms_code" id="sms_code" placeholder="请输入短信验证码" />
+                                <div class="lo_yzm" style="width:100px;"><a href="javascript:void(0);" id="getsms" tid="0">获取验证码</a></div>
+                            </div>
+                            <div class="login_cona">
+                                <img src="../img/mm.png" />
+                                <input type="password" name="pwd" id="pwd" placeholder="请输入您的登录密码" />
+                            </div>
+                        </div>
+                        </form>
+                        <div class="login_btn">
+                            <button type="button" style="font-size: 17px;color:#fff;height:100%;width:100%;background:#ff6401 none repeat scroll 0 0;" data-loading-text="注册中。。。" class="mui-btn" id="sms_submit">注册</button>
+                        </div>
+                        <p class="login_p">已有账号？<span><a href="" class="login_ab">请直接登录</a></span></p>
+                        <div class="login_g">
+                            <a href=""><img src="../img/bk.jpg" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

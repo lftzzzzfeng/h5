@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/public.css" rel="stylesheet"/>
+		<link href="../css/new/zimeiti.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav ss_c">
+	      	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
+	      	<div class="top_div">
+	        	<ul>
+			        <li class="li_div" id="contentService"><a href="">服务</a></li>
+			        <li id="contentInfo"><a href="javascript:void(0);" id="contentId">详情</a></li>
+			        <li><a href="#zixun">咨询</a></li>
+	        	</ul>
+	      	</div>
+	      	<div class="ss_right" style="top:0;"><a href="<?php echo base_url();?>"><span class="mui-icon mui-icon-home"></a></span></div>
+	    </header>
+	    <div class="mui-content" style="background: #f8f8f8;">
+	      	<div class="xqy_con">
+	        	<img src="../img/wxyc.jpg" />
+		        <p class="xqy_p"><a href="javascript:void(0);">商品名称[外贸快车]</a></p>
+		        <div class="xqy_hy">
+		          	<p class="hy_p">
+              			普通会员价：<span>¥100</span>
+		          	</p>
+		          	<div class="hy_div">
+		            	<div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='100'>
+		              		<button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+		              		<input class="mui-numbox-input" id="inp" type="number" value="" />
+		              		<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+		            	</div>
+		          	</div>
+		        </div>
+		        <div class="xqy_hy">
+		          	<p class="x_p">关注0</p>
+	        	  	<p class="x_p x_pp">响应周期<span>0.5天</span></p>
+		          	<p class="x_p x_ppp">完成周期<span>1天</span></p>
+		        </div>
+	      	</div>
+	      	<div class="xq_xq">
+		        <div class="xq_top">
+		          	<p class="xa_q" id="infoShow" tid="on">商品详情
+		            <span id="infoshowImg" class="mui-icon mui-icon-arrowright" style="float: right;margin-top:8px;"></span></p>
+		        </div>
+		        <div class="xq_nr">
+		          	内容
+		        </div>
+	      	</div>
+	      	<div class="jylc">
+		        <p>交易流程</p>
+		        <div class="jylc_con">
+		          	<ul>
+	            		<li><img src="../img/cart_1.jpg" /><p>选择产品</p></li>
+		            	<li><img src="../img/cart_2.jpg" /><p>支付购买</p></li>
+		            	<li><img src="../img/cart_3.jpg" /><p>提交信息</p></li>
+		            	<li><img src="../img/cart_4.jpg" /><p>订单执行</p></li>
+		            	<li style="margin-right: 0;"><img src="../img/cart_5.jpg" /><p>订单完成</p></li>
+		          </ul>
+		        </div>
+	      	</div>
+	    </div>
+	    <script type="text/javascript">
+	    	mui.plusReady(function() {
+	    		var name = plus.webview.currentWebview();
+		    	var feng = name.name;
+		    	alert(feng);	
+	    	});
+	    </script>
+	</body>
+
+</html>

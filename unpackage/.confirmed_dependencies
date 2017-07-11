@@ -1,0 +1,464 @@
+{
+	"index.html": {
+		"resources": [
+			"img/yx_list.png",
+			"img/footer-pc.png",
+			"img/gg_list.png",
+			"fonts/mui.ttf",
+			"img/hot.png",
+			"css/public.css",
+			"img/mine.png",
+			"img/cart.png",
+			"img/xw_list.png",
+			"img/index_top.jpg",
+			"img/fxq.png",
+			"css/index.css",
+			"img/footer-app.png",
+			"img/top.png",
+			"js/mui.min.js",
+			"img/zmt_list.png",
+			"img/footer-mobile.png",
+			"css/mui.min.css",
+			"img/ss_list.png",
+			"img/logo.png",
+			"img/find.png",
+			"img/home.png",
+			"img/kb_list.png",
+			"img/xuanzhong.png",
+			"img/other.png",
+			"img/yxgj_list.png"
+		],
+		"refer": [
+			"login.html",
+			"reg.html",
+			"search.html",
+			"demand.html",
+			"sosuo.html",
+			"marketing/sosuo.html",
+			"views/marketing/sosuo.html",
+			"views/search.html",
+			"views/demand.html",
+			"views/reg.html",
+			"views/login.html",
+			"views/marketing/xinwen.html",
+			"views/marketing/weixin.html",
+			"views/marketing/traffic.html",
+			"views/marketing/tool.html",
+			"views/marketing/advertisement.html",
+			"views/marketing/shuijun.html",
+			"views/marketing/service.html",
+			"views/discovery/index.html",
+			"views/cart/index.html",
+			"views/template/marketing.html",
+			"views/member/index.html"
+		]
+	},
+	"login.html": {
+		"resources": [
+			"img/sj.png",
+			"css/common.css",
+			"css/reg.css",
+			"css/mui.min.css",
+			"img/yzm.png",
+			"img/bk.jpg",
+			"img/mm.png"
+		]
+	},
+	"reg.html": {
+		"resources": [
+			"img/sj.png",
+			"css/common.css",
+			"css/mui.min.css",
+			"css/reg.css",
+			"img/bk.jpg",
+			"img/yzm.png",
+			"img/dx.png",
+			"img/mm.png"
+		]
+	},
+	"search.html": {
+		"resources": [
+			"img/del.png",
+			"img/ss.png",
+			"css/content.css",
+			"css/mui.min.css",
+			"css/public.css",
+			"js/mui.min.js"
+		]
+	},
+	"demand.html": {
+		"resources": [
+			"img/er.jpg",
+			"img/fxq06.jpg",
+			"img/fxq05.jpg",
+			"img/fxq01.png",
+			"css/content.css",
+			"img/fxq04.png",
+			"img/fxq02.png",
+			"img/fxq03.png",
+			"css/mui.min.css",
+			"css/public.css",
+			"js/mui.min.js"
+		]
+	},
+	"sosuo.html": {
+		"resources": [
+			"css/index.css",
+			"img/list_b.jpg",
+			"img/list_a.jpg",
+			"css/mui.min.css",
+			"img/ad/baike.jpg",
+			"js/mui.min.js"
+		]
+	},
+	"marketing/sosuo.html": {
+		"resources": [
+			"css/index.css",
+			"css/mui.min.css",
+			"img/ad/baike.jpg",
+			"img/list_b.jpg",
+			"img/list_a.jpg",
+			"js/mui.min.js"
+		]
+	},
+	"views/marketing/sosuo.html": {
+		"resources": [
+			"css/index.css",
+			"img/ss.png",
+			"img/list_b.jpg",
+			"img/list_a.jpg",
+			"css/mui.min.css",
+			"img/ad/baike.jpg",
+			"css/public.css",
+			"js/mui.min.js"
+		],
+		"refer": [
+			"views/details.html"
+		]
+	},
+	"views/search.html": {
+		"resources": [
+			"img/del.png",
+			"img/ss.png",
+			"css/content.css",
+			"css/mui.min.css",
+			"css/public.css",
+			"js/mui.min.js"
+		]
+	},
+	"views/demand.html": {
+		"resources": [
+			"img/er.jpg",
+			"img/fxq06.jpg",
+			"img/fxq05.jpg",
+			"img/fxq01.png",
+			"css/content.css",
+			"css/mui.min.css",
+			"css/public.css",
+			"img/fxq04.png",
+			"img/fxq02.png",
+			"img/fxq03.png",
+			"js/mui.min.js"
+		]
+	},
+	"views/reg.html": {
+		"resources": [
+			"img/sj.png",
+			"css/common.css",
+			"css/reg.css",
+			"img/bk.jpg",
+			"img/yzm.png",
+			"img/dx.png",
+			"img/mm.png"
+		]
+	},
+	"views/marketing/xinwen.html": {
+		"resources": [
+			"css/new/images/list_a.jpg",
+			"css/new/images/home.png",
+			"css/new/images/mine.png",
+			"css/new/images/ss.png",
+			"css/new/public.css",
+			"css/new/images/fxq.png",
+			"css/new/zimeiti.css",
+			"css/new/images/find.png",
+			"css/new/images/list_b.jpg",
+			"js/mui.min.js",
+			"css/new/images/cart.png",
+			"css/new/images/list_s.jpg",
+			"css/mui.min.css",
+			"css/new/ad/baike.jpg"
+		]
+	},
+	"views/marketing/weixin.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/new/images/list_a.jpg",
+			"css/new/images/home.png",
+			"css/new/images/ss.png",
+			"css/new/images/mine.png",
+			"css/new/images/fxq.png",
+			"css/new/zimeiti.css",
+			"css/new/images/find.png",
+			"css/new/images/list_b.jpg",
+			"css/new/images/cart.png",
+			"css/new/images/list_s.jpg",
+			"css/new/ad/baike.jpg",
+			"css/public.css"
+		]
+	},
+	"views/marketing/advertisement.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/new/images/find.png",
+			"css/index.css",
+			"css/new/images/cart.png",
+			"css/new/images/home.png",
+			"css/new/images/mine.png",
+			"css/new/ad/baike.jpg",
+			"css/new/images/ss.png",
+			"css/new/images/fxq.png",
+			"css/public.css"
+		]
+	},
+	"views/marketing/service.html": {
+		"resources": [
+			"css/index.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/new/images/find.png",
+			"css/new/images/cart.png",
+			"css/new/images/home.png",
+			"css/new/images/mine.png",
+			"css/new/ad/baike.jpg",
+			"css/new/images/ss.png",
+			"css/new/images/fxq.png",
+			"css/public.css"
+		]
+	},
+	"views/marketing/shuijun.html": {
+		"resources": [
+			"css/index.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/new/images/find.png",
+			"css/new/images/cart.png",
+			"css/new/images/home.png",
+			"css/new/images/mine.png",
+			"css/new/ad/baike.jpg",
+			"css/new/images/ss.png",
+			"css/new/images/fxq.png",
+			"css/public.css"
+		]
+	},
+	"views/marketing/tool.html": {
+		"resources": [
+			"css/index.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/public.css"
+		]
+	},
+	"views/marketing/traffic.html": {
+		"resources": [
+			"css/index.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/public.css"
+		]
+	},
+	"views/login.html": {
+		"resources": [
+			"img/sj.png",
+			"css/common.css",
+			"css/reg.css",
+			"img/yzm.png",
+			"img/bk.jpg",
+			"img/mm.png",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"views/member/index.html"
+		]
+	},
+	"views/details.html": {
+		"resources": [
+			"img/cart_4.jpg",
+			"js/mui.min.js",
+			"img/cart_1.jpg",
+			"img/cart_5.jpg",
+			"css/mui.min.css",
+			"img/wxyc.jpg",
+			"img/cart_2.jpg",
+			"img/cart_3.jpg",
+			"css/new/zimeiti.css",
+			"css/public.css"
+		]
+	},
+	"views/member/index.html": {
+		"resources": [
+			"css/mui.min.css",
+			"css/new/images/home.png",
+			"js/mui.min.js",
+			"css/index.css",
+			"img/user_1.png",
+			"img/cen.png",
+			"img/zs.png",
+			"css/help.css",
+			"css/yx_nav.css",
+			"img/tx.png",
+			"img/sz.png",
+			"img/dfk.png",
+			"img/tjxx.png",
+			"img/zxorder.png",
+			"img/dpj.png",
+			"img/wdorder.png",
+			"img/yqhy.png",
+			"img/help.png",
+			"img/tj.gif",
+			"img/home1.png",
+			"css/new/images/find.png",
+			"img/go.png",
+			"css/public.css"
+		],
+		"refer": [
+			"views/member/topup.html",
+			"views/member/inprocessing.html",
+			"views/member/waitforuploading.html",
+			"views/member/unpaid.html",
+			"views/member/order.html",
+			"views/member/finish.html",
+			"views/member/withdrawcash.html",
+			"views/member/invitingorder.html",
+			"views/member/helpcenter.html",
+			"views/member/browsehistory.html",
+			"views/member/favourite.html"
+		]
+	},
+	"views/member/topup.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/help.css"
+		]
+	},
+	"views/member/order.html": {
+		"resources": [
+			"css/mui.min.css",
+			"js/mui.min.js",
+			"css/help.css"
+		]
+	},
+	"views/member/invitingorder.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/help.css"
+		]
+	},
+	"views/member/unpaid.html": {
+		"resources": [
+			"css/mui.min.css",
+			"js/mui.min.js",
+			"css/help.css",
+			"css/public.css"
+		]
+	},
+	"views/member/waitforuploading.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/help.css"
+		]
+	},
+	"views/member/inprocessing.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/help.css",
+			"css/mui.min.css"
+		]
+	},
+	"views/member/withdrawcash.html": {
+		"resources": [
+			"css/help.css",
+			"css/mui.min.css",
+			"js/mui.min.js"
+		]
+	},
+	"views/member/favourite.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/help.css",
+			"css/mui.min.css",
+			"css/dropload.css"
+		]
+	},
+	"views/member/browsehistory.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/help.css",
+			"css/mui.min.css",
+			"css/dropload.css"
+		]
+	},
+	"views/member/helpcenter.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/help.css",
+			"css/mui.min.css",
+			"css/dropload.css"
+		]
+	},
+	"views/member/finish.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/help.css",
+			"css/mui.min.css"
+		]
+	},
+	"views/discovery/index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/yx_nav.css",
+			"css/public.css"
+		]
+	},
+	"views/cart/index.html": {
+		"resources": [
+			"css/index.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/public.css"
+		],
+		"refer": [
+			"views/cart/checkout.html"
+		]
+	},
+	"views/cart/checkout.html": {
+		"resources": [
+			"css/index.css",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		]
+	},
+	"views/template/marketing.html": {
+		"resources": [
+			"css/index.css",
+			"css/new/images/cart.png",
+			"css/mui.min.css",
+			"css/new/public.css",
+			"js/mui.min.js"
+		],
+		"refer": [
+			"index.html",
+			"views/discovery/index.html",
+			"views/cart/index.html",
+			"views/demand.html",
+			"views/member/index.html"
+		]
+	}
+}

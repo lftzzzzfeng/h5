@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/public.css" rel="stylesheet" />
+		<link href="../../css/index.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav ss_c">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
+		    <p class="hede_p">收银台</p>
+		</header>
+		<div class="mui-content" style="background: #f8f8f8;">
+          	<div class="syt_con">
+		        <p class="syt_p">订单金额：¥520.00</p>
+		        <p class="syt_pp">订单编号：JC201707101002209564</p>
+		        <p class="syt_pp">订单日期：2017-07-10</p>
+	      	</div>
+			<div class="zffs">
+                <div class="syt_zf" id="pay_ali" tid="1">
+                	<div class="share_radioCk" id="pay_ali_btn"></div> 
+            		<img src="http://m.meijiexia.com/statics/new/images/zfb.jpg" style="width:30px;"/>
+            		<p>支付宝</p>
+            	</div>
+                <form action="http://m.meijiexia.com/pay" id="subForm" method="post">
+		          	<input type="hidden" name="pid" value="JC201707101002209564">
+		          	<input type="hidden" name="sign" value="6c815d74ba7d4f640dde3ebf1d6201fa">
+		          	<input type="hidden" name="t" value="1499653374">
+                  	<input type="hidden" name="tpay" id="tpay" value="2">
+              	</form>
+        		<div class="qr_btn"><a href="javascript:void(0);" id="paying">确认支付</a></div>
+      		</div>
+            <div class="jylc">
+          		<p>交易流程</p>
+          		<div class="jylc_con">
+		            <ul>
+		              <li><img src="http://m.meijiexia.com/statics/new/images/1.png" /><p>选择产品</p></li>
+		              <li><img src="http://m.meijiexia.com/statics/new/images/02.png" /><p>支付购买</p></li>
+		              <li><img src="http://m.meijiexia.com/statics/new/images/3.png" /><p>提交需求</p></li>
+		              <li><img src="http://m.meijiexia.com/statics/new/images/4.png" /><p>订单执行</p></li>
+		              <li style="margin-right: 0;"><img src="http://m.meijiexia.com/statics/new/images/5.png" /><p>订单完成</p></li>
+		            </ul>
+          		</div>
+    		</div>
+      	</div>
+    	<div class="cart_foot" style="border-top: 1px solid #e5e5e5;">
+      		<div class="cart_footleft" style="width:20%;">
+        		<div class="checkboxborderm inputa" style="margin-top: 14px;" tip="searpro_42"></div>全选
+      		</div>
+	      	<div class="cart_footmid" style="width:45%;">
+	          	<p>合计：<span id="allPrice"></span></p>
+	      	</div>
+      		<div id="divCheckout" class="cart_footright"><a href="javascript:void(0);">去结算(<span id="allNum"></span>)</a></div>
+    	</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+		</script>
+	</body>
+</html>
