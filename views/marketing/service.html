@@ -7,9 +7,108 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link href="../../css/public.css" rel="stylesheet" />
 		<link href="../../css/index.css" rel="stylesheet" />
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			var categories = '';
+	  		var pageNumber = 1;
+	  		var categoryId = 0;
+	  		var overallTable = 'overall';
+			var uid = 0;
+			var loadType = 1;
+			
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						auto: false,
+						callback: pulldownRefresh
+					},
+					up: {
+						height:50,
+						auto:false,
+						contentrefresh : "正在加载...",
+						contentnomore:'上拉刷新',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			function loadCategoryItems(categoryId) {
+				mui.ajax('http://m.meijiexia.com/android/loaddata', {
+					data:{
+						p: pageNumber,
+						cate: 3,
+						tab: overallTable,
+						uid: uid
+					},
+					dataType:'json',
+					type:'post',
+					success:loadCategoryItemsSuccess,
+					error:function(xhr, type, errorThrown){
+						console.log(JSON.stringify(errorThrown));
+					}
+				});
+			}
+			
+			function loadCategoryItemsSuccess(result) {
+				if (result) {
+					var categoryItems = result.list;
+					if (categoryItems) {
+						var content = '';
+						var divListCategoryItems = document.getElementById('divListCategoryItems');
+						
+						for (var categoryItemCounter = 0; categoryItemCounter < categoryItems.length; categoryItemCounter++) {
+							content += "<div class=\"index_tcp\">";
+							content += "<a href=\""+categoryItems[categoryItemCounter].url+"\">";
+							content += "<img style=\"width:80px;\" alt=\""+categoryItems[categoryItemCounter].title+"\" title=\""+categoryItems[categoryItemCounter].title+"\" src=\""+categoryItems[categoryItemCounter].imgurl+"\" />";
+							content += "</a>";
+							content += "<div class=\"index_tcpr\">";
+							content += "<p class=\"t_p\"><a href=\"\">"+categoryItems[categoryItemCounter].title+"</a></p>";
+							content += "<div class=\"t_pp\">";
+							content += "<p>¥"+categoryItems[categoryItemCounter].price+"元</p>";
+							content += "</div>";
+							content += "</div>";
+							content += "<div class=\"addToCart checkboxborderm"+(categoryItems[categoryItemCounter].show ? "Ck" : "")+"\" tid=\""+categoryItems[categoryItemCounter].show+"\" tab=\"searpro\" pid=\""+categoryItems[categoryItemCounter].id+"\"></div>";
+							content += "</div>";
+						}
+						
+						switch (loadType) {
+							case 1:
+								divListCategoryItems.innerHTML = content;
+								break;
+							case 2:
+								mui('#pullrefresh').pullRefresh().endPulldown();
+								divListCategoryItems.innerHTML = divListCategoryItems.innerHTML + content;
+								break;
+							case 3:
+								mui('#pullrefresh').pullRefresh().endPullup();
+								if (pageNumber == 3) {
+									mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
+								}
+								divListCategoryItems.innerHTML = divListCategoryItems.innerHTML + content;
+								break;
+							default:
+						}
+					}
+				}
+			}
+			
+			function pulldownRefresh() {
+				pageNumber++;
+				loadType = 2;
+				loadCategoryItems(categoryId);
+			}
+			
+			function pullupRefresh() {
+				pageNumber++;
+				loadType = 3;
+				loadCategoryItems(categoryId);
+			}
+		</script>
 	</head>
 	<body style="background: #f8f8f8;">
-		<div class="mui-content">
+		<div id="pullrefresh" class="mui-content">
 		    <div class="index_banner" style="margin-top: 5px;margin-bottom: 0px;">
 		        <a href="#">
 		            <img src="../../css/new/ad/baike.jpg" title="百度百科 服务费仅需4500元"/>
@@ -17,7 +116,7 @@
 		    </div>
 		    <div class="list_li" id="loaddata">
 		        <ul>
-                    <li class="u_li"><a href="http://m.meijiexia.com/zonghe?cate=3" style="color:#fe6401;">综合</a></li>
+                    <li class="u_li category" data-category-id="0"><a href="http://m.meijiexia.com/zonghe?cate=3" style="color:#fe6401;">综合</a></li>
                 	<li>
 	                    <a href="http://m.meijiexia.com/zonghe?cate=3&amp;sort=sort_price_desc" style="position: relative;">
 	                        <p class="liss_p" style="margin-bottom: 0px;">价格</p>
@@ -29,28 +128,58 @@
                 	</li>
                 	<li><a href="http://m.meijiexia.com/zonghe?cate=3&amp;sort=sort_time_desc">时间</a></li>
                 </ul>
-		        <div id="list_content">
-                    <div class="index_tcp">
-                    	<a href="http://m.meijiexia.com/zonghe-72.html">
-                    		<img style="width:80px;" alt="舆情公关监测/公关处理/搜索引擎舆情监控(9999元/月)" title="舆情公关监测/公关处理/搜索引擎舆情监控(9999元/月)" src="http://img.meijiexia.com/prologo/20170616372227.png">
-                    	</a>
-                    	<div class="index_tcpr">
-                        	<p class="t_p"><a href="http://m.meijiexia.com/zonghe-72.html">舆情公关监测/公关处理/搜索引擎舆情监控(9999元/月)</a></p>
-                        	<div class="t_pp">
-                                <p>¥9999.00元</p>
-                            </div>
-                    	</div>
-                        <div class="checkboxborderm" tid="0" tab="glopro" pid="72"></div>
-                    </div>
+		        <div id="divListCategoryItems">
+                    
                 </div>
-                <div class="dropload-down">
+                <!--<div class="dropload-down">
                 	<div class="dropload-refresh">↑上拉加载更多</div>
-                </div>
+                </div>-->
 			</div>
 		</div>
-		<script src="../../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.plusReady(function() {
+				loadCategoryItems(categoryId);
+				
+				mui(document.body).on('tap', ".category", function() {
+	  				pageNumber = 1;
+	  				loadType = 1;
+	  				categoryId = this.getAttribute('data-category-id');
+	  				loadCategoryItems(categoryId);
+	  			});
+	  			
+	  			mui(document.body).on("tap", ".index_tcpr", function() {
+					mui.openWindow({
+						url: '../details.html',
+					    id: 'details.html',
+					    show: {
+					      event:'titleUpdate'
+					    },
+					    waiting:{
+					      	autoShow:true,//自动显示等待框，默认为true
+					      	title:'正在加载...',//等待对话框上显示的提示内容
+					      	options:{
+				      			background:'#8f8f94',
+					        	loading:{display:'inline'}
+					      	}
+					    },
+					    extras:{
+					    	name:this.children[0].getAttribute('href')
+					    }
+					});
+  				});
+  				
+  				mui(document.body).on('tap', '.addToCart', function() {
+  					var marketingTemplate = mui.preload({
+					    url:'views/template/marketing.html',
+					    id:'templateMarketing.html',
+					    styles:{
+					        popGesture:"hide"
+					    }
+					});
+  					
+					mui.fire(marketingTemplate, "updateCart");
+  				});
+			});
 		</script>
 	</body>
 </html>

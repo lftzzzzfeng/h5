@@ -439,7 +439,9 @@
 					"css/new/images/fxq.png",
 					"css/public.css"
 				],
-				"refer": [],
+				"refer": [
+					"views/details.html"
+				],
 				"priority": 0
 			},
 			"views/marketing/service.html": {
@@ -481,9 +483,12 @@
 					"css/index.css",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"css/public.css"
+					"css/public.css",
+					"css/new/ad/baike.jpg"
 				],
-				"refer": [],
+				"refer": [
+					"views/details.html"
+				],
 				"priority": 0
 			},
 			"views/marketing/traffic.html": {
@@ -491,7 +496,8 @@
 					"css/index.css",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"css/public.css"
+					"css/public.css",
+					"css/new/ad/baike.jpg"
 				],
 				"refer": [],
 				"priority": 0

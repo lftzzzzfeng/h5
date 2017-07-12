@@ -221,6 +221,9 @@
 			"css/new/images/ss.png",
 			"css/new/images/fxq.png",
 			"css/public.css"
+		],
+		"refer": [
+			"views/details.html"
 		]
 	},
 	"views/marketing/service.html": {
@@ -258,7 +261,11 @@
 			"css/index.css",
 			"js/mui.min.js",
 			"css/mui.min.css",
-			"css/public.css"
+			"css/public.css",
+			"css/new/ad/baike.jpg"
+		],
+		"refer": [
+			"views/details.html"
 		]
 	},
 	"views/marketing/traffic.html": {
@@ -266,7 +273,8 @@
 			"css/index.css",
 			"js/mui.min.js",
 			"css/mui.min.css",
-			"css/public.css"
+			"css/public.css",
+			"css/new/ad/baike.jpg"
 		]
 	},
 	"views/login.html": {
