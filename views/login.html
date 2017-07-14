@@ -9,88 +9,298 @@
     <link href="../css/common.css" rel="stylesheet"/>
     <link href="../css/reg.css" rel="stylesheet"/>
     <script type="text/javascript" charset="utf-8">
-        mui.init();
+        mui.init();       
+    	mui.plusReady(function() {
+    		mui.preload({
+			    url:'reg.html',
+			    id:'btnReg',
+			});
+			//注册跳转 
+			document.getElementById('leftReg').addEventListener('tap', function() {
+	  			mui.openWindow({
+				    id:'btnReg',
+			 	});
+			});
+			//忘记密码
+			mui.preload({
+			    url:'password.html',
+			    id:'btnPwd',
+			});
+			document.getElementById('leftPwd').addEventListener('tap', function() {
+				mui.openWindow({
+				    id:'btnPwd',
+			 	});
+			});
+			var accountBox = document.getElementById('account');
+			var passwordBox = document.getElementById('password');
+			var mask = mui.createMask();
+    		document.getElementById('login_submit').addEventListener('tap', function() {
+				var accountVal = accountBox.value || '';
+				var passwordVal = passwordBox.value || '';				
+				if (accountVal.length < 11) {
+					plus.nativeUI.toast('请输入正确的手机号');
+				} else if (!accountVal.match(/^(((1[3|4|5|7|8][0-9]{1}))+\d{8})$/)){
+					plus.nativeUI.toast('请输入正确的手机号');
+				} else if (passwordVal.length < 1) {
+					plus.nativeUI.toast('请输入您的登录密码');
+				} else {//发送服务器请求
+					mui.ajax('http://m.meijiexia.com/android', {
+						data:{
+							tel:accountVal,
+							pwd:passwordVal
+						},
+						dataType:'json',
+						type:'post',
+						timeout:5000,
+						beforeSend: function() {
+					        plus.nativeUI.showWaiting('登录中。。。',{background:'#8f8f94',back:'none',loading:{display:'inline'}});
+					        mask.show();  
+					    },
+					    complete: function() {
+					        plus.nativeUI.closeWaiting();
+					        mask.close();
+					    },
+						success: function(data) {
+							if (data.state == 1) {//登录成功 存储本地 跳转页面
+								plus.storage.setItem('uid', data.userid.toString());
+								plus.storage.setItem('tel', data.username.toString());
+								plus.storage.setItem('pwd', data.password.toString());
+								//跳转页面
+								mui.openWindow({
+									url: 'member/index.html',
+						    		id: 'member',
+						    		extras:{pageFrom:'lmogin'}
+							 	});
+							} else {//登录失败
+								plus.nativeUI.toast('账号或密码错误！');
+							}
+							plus.nativeUI.closeWaiting();
+				        	mask.close();
+						},
+						error: function(xhr,type,errorThrown) {
+							if (type == 'timeout') {//超时
+								plus.nativeUI.toast('服务器超时，请稍后重试！');
+								plus.nativeUI.closeWaiting();
+								mask.close();
+							} else {
+								plus.nativeUI.toast('网络错误，请稍后重试！');
+								plus.nativeUI.closeWaiting();
+								mask.close();
+							}
+						}
+					});	
+				}
+			});
+			//获取短信验证码 
+			document.getElementById('getsms').addEventListener('tap', function() {
+				var sms_tel = document.getElementById('sms_tel').value;
+				var sms_state = document.getElementById('smstate').value;//状态
+				var sms_time_out = 60;
+				if (!sms_tel.match(/^(((1[3|4|5|7|8][0-9]{1}))+\d{8})$/)) {
+					plus.nativeUI.toast('请输入正确的手机号');
+				} else {//获取短信验证码
+					if (sms_state == 1) {
+						document.getElementById('smstate').value = 0;
+						mui.ajax('http://m.meijiexia.com/android/smscode', {
+							data: {
+								tel:sms_tel
+							},
+							dataType: 'json',
+							type: 'post',
+							timeout: 5000,
+							beforeSend: function() {
+						        plus.nativeUI.showWaiting('发送中。。。',{background:'#8f8f94',back:'none',loading:{display:'inline'}});
+						        mask.show();  
+						    },
+						    complete: function() {
+						        plus.nativeUI.closeWaiting();
+						        mask.close();
+						    },
+							success: function(data) {
+								if (data.state == '2') {
+									plus.nativeUI.toast('发送频繁，请稍后再试！');
+									plus.nativeUI.closeWaiting();
+									mask.close();
+								} else if (data.state == '4') {
+									plus.nativeUI.toast('网络错误，请稍后重试！');
+									plus.nativeUI.closeWaiting();
+									mask.close();
+								} else {
+									var id = setInterval(function () {
+										if (sms_time_out == 0) {                
+						                    clearInterval(id);
+						                    document.getElementById('smstate').value = 1;
+						                    document.getElementById('getsms').innerHTML="重新发送";
+						                    sms_time_out = 60;
+						                } else {
+						                    sms_time_out--;
+						                    document.getElementById('getsms').innerHTML = sms_time_out + "秒";
+						                }
+									}, 1000);
+									plus.nativeUI.toast('短信已发送，请注意查收！');
+									plus.nativeUI.closeWaiting();
+									mask.close();
+								}
+							},
+							error: function(xhr,type,errorThrown) {
+								if (type == 'timeout') {//超时
+									plus.nativeUI.toast('服务器超时，请稍后重试！');
+									plus.nativeUI.closeWaiting();
+									mask.close();
+								} else {
+									plus.nativeUI.toast('网络错误，请稍后重试！');
+									plus.nativeUI.closeWaiting();
+									mask.close();
+								}
+							}
+						});
+					}	
+				}
+			});
+			document.getElementById('sms_submit').addEventListener('tap', function() {
+				var sms_tel = document.getElementById('sms_tel').value;
+				var sms_code = document.getElementById('sms_code').value;
+				
+				if (!sms_tel.match(/^(((1[3|4|5|7|8][0-9]{1}))+\d{8})$/)) {
+					plus.nativeUI.toast('请输入正确的手机号');
+				} else if (sms_code.length < 6) {
+					plus.nativeUI.toast('请输入正确的短信验证码');
+				} else {//发送服务器请求
+					mui.ajax('http://m.meijiexia.com/android/smslogin', {
+						data: {
+							tel:sms_tel,
+							code:sms_code
+						},
+						dataType: 'json',
+						type: 'post',
+						timeout: 5000,
+						beforeSend: function() {
+					        plus.nativeUI.showWaiting('登录中。。。',{background:'#8f8f94',back:'none',loading:{display:'inline'}});
+					        mask.show();  
+					    },
+					    complete: function() {
+					        plus.nativeUI.closeWaiting();
+					        mask.close();
+					    },
+						success: function(data) {
+							if (data.state == 1) {//登录成功 存储本地 跳转页面
+								plus.storage.setItem('uid', data.userid);
+								plus.storage.setItem('tel', data.username);
+								plus.storage.setItem('pwd', data.password);
+								//跳转页面
+								mui.openWindow({
+									url: 'member/index.html',
+						    		id: 'member',
+						    		extras: {pageFrom:'login'}
+							 	});
+							} else {//登录失败
+								plus.nativeUI.toast('短信验证码错误！');
+							}
+							plus.nativeUI.closeWaiting();
+				        	mask.close();
+						},
+						error: function(xhr,type,errorThrown) {
+							if (type == 'timeout') {//超时
+								plus.nativeUI.toast('服务器超时，请稍后重试！');
+								plus.nativeUI.closeWaiting();
+								mask.close();
+							} else {
+								plus.nativeUI.toast('网络错误，请稍后重试！');
+								plus.nativeUI.closeWaiting();
+								mask.close();
+							}
+						}
+					});	
+				}
+			});
+   		});
     </script>
-</head>
+	</head>
     <body style="background: #fff;">
         <header class="mui-bar mui-bar-nav ss_c">
             <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
             <p class="hede_p">会员登录</p>
         </header>
         <div class="mui-content">
-            <div class="ul_li">
-                <ul>
-                    <li class="hit" style="margin-left: 5%;">账号密码登陆</li>
-                    <li>快捷免密登录</li>
-                </ul>
-                <div class="paness">
-                    <div class="panea" style="display: block;">
-                        <form action="" id="logForm" method="post">
-                        <div class="login_con">
-                            <div class="login_cond">
-                                <img src="../img/sj.png" />
-                                <input type="text" name="tel" id="tel" placeholder="请输入您的手机号" />
-                            </div>
-                            <div class="login_cona">
-                                <img src="../img/mm.png" />
-                                <input type="password" name="pwd" id="pwd" placeholder="请输入您的登录密码" />
-                            </div>
-                        </div>
-                        <div class="login_btn">
-                            <button type="button" style="font-size: 17px;color:#fff;height:100%;width:100%;background:#ff6401 none repeat scroll 0 0;" data-loading-text="登陆中。。。" class="mui-btn" id="login_submit">登录</button>
-                        </div>
-                        <p class="login_p">没有账号？
-                            <span><a href="javascript:void(0);" class="login_ab" id="leftReg">请先注册</a></span>
-                            <a href="javascript:void(0);" class="login_a">忘记密码</a>
-                        </p>
-                        <div class="login_g">
-                            <a href=""><img src="../img/bk.jpg" alt="" /></a>
-                        </div>
-                        </form>
-                    </div>
-                    <div class="panea">
-                        <div class="login_con">
-                            <form action="" id="logFormsms" method="post">
-	                            <div class="login_cond">
-	                                <img src="../img/sj.png" />
-	                                <input type="text" name="sms_tel" id="sms_tel" placeholder="请输入您的手机号" />
-	                            </div>
-	
-	                            <div class="login_cona" style="border-bottom: 1px solid #eee;">
-	                                <img src="../img/yzm.png" />
-	                                <input type="text" class="lo_in" name="verify" id="verify" placeholder="请输入右侧验证码" />
-	                                <div id="verifyChange" style="float: right; margin: 0px 1% 0px 0px;">
-	                                    <img id="verifyImg" src="http://m.meijiexia.com/captcha/1499225743.0678.png" style="width: 70px; height: 40px; margin-top: 5px;">
-	                                </div>
-	                            </div>
-	
-	                            <div class="login_cona">
-	                                <img src="../img/mm.png" />
-	                                <input type="text" class="lo_in" name="sms_code" id="sms_code" placeholder="请输入短信验证码" />
-	                                <div class="lo_yzm" style="width:100px;"><a href="javascript:void(0);" id="getsms" tid="0">获取验证码</a></div>
-	                            </div>
-                            </form>
-                        </div>
-                        <div class="login_btn">
-                            <button type="button" style="font-size: 17px;color:#fff;height:100%;width:100%;background:#ff6401 none repeat scroll 0 0;" data-loading-text="登陆中。。。" class="mui-btn" id="sms_submit">登录</button>
-                        </div>
-                        <p class="login_p">没有账号？<span><a href="javascript:void(0);" class="login_ab">请先注册</a></span><a href="javascript:void(0);" class="login_a">忘记密码</a></p>
-                        <div class="login_g">
-                            <a href=""><img src="../img/bk.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-        	mui.plusReady(function() {
-        		mui(document.body).on('tap', '#login_submit', function(){
-				  	mui.openWindow({
-				    	id:'memberIndex',
-				    	url:'member/index.html'
-				  	});
-				});
-        	});
-        </script>
+			<div id="slider" class="mui-slider mui-fullscreen" style="top: 60px;">
+				<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll" style="width:100%;">
+						<a class="mui-control-item mui-active" data-index="0" style="width:50%;">账号密码登陆</a>
+						<a class="mui-control-item" data-index="1" style="width:50%;">快捷免密登录</a>
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div class="mui-slider-item mui-control-content mui-active">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="paness">
+				                    <div class="panea" style="display: block;">
+				                        <div class="login_con">
+				                            <div class="login_cond">
+				                                <img src="../img/sj.png" style="width:20px;"/>
+				                                <input type="text" name="account" id="account" placeholder="请输入您的手机号" />
+				                            </div>
+				                            <div class="login_cona">
+				                                <img src="../img/mm.png" style="width:20px;"/>
+				                                <input type="password" name="password" id="password" placeholder="请输入您的登录密码" />
+				                            </div>
+				                        </div>
+				                        <div class="login_btn" id="login_submit">
+			                            	<button type="button" style="font-size: 17px;color:#fff;height:100%;width:100%;background:#ff6401 none repeat scroll 0 0;" data-loading-text="登陆中。。。" class="mui-btn" >登录</button>
+				                        </div>
+				                        <p class="login_p">没有账号？
+				                            <span><a href="javascript:void(0);" class="login_ab" id="leftReg">请先注册</a></span>
+				                            <a href="javascript:void(0);" class="login_a" id="leftPwd">忘记密码</a>
+				                        </p>
+				                        <div class="login_g">
+				                            <a href=""><img src="../img/bk.jpg" style="width:100%;" alt="用户登陆 - 媒介匣，关注创业者的互联网营销服务资源平台" /></a>
+				                        </div>
+				                    </div>
+				                 </div>   
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="paness">
+								<div class="panea" style="display: block;">
+			                        <div class="login_con">
+			                        		<div class="login_cond">
+			                                <img src="../img/sj.png" style="width:20px;"/>
+			                                <input type="text" name="sms_tel" id="sms_tel" placeholder="请输入您的手机号" />
+			                            </div>
+			                            <div class="login_cona">
+			                                <img src="../img/dx.png" style="width:20px;"/>
+			                                <input type="text" class="lo_in" name="sms_code" id="sms_code" placeholder="请输入短信验证码" />
+			                                <div class="lo_yzm" style="width:100px;"><a href="javascript:void(0);" id="getsms" tid="0">获取验证码</a></div>
+			                            </div>
+			                        </div>
+			                        <div class="login_btn">
+			                            <button type="button" style="font-size: 17px;color:#fff;height:100%;width:100%;background:#ff6401 none repeat scroll 0 0;" class="mui-btn" id="sms_submit">登录</button>
+			                        </div>
+			                        
+			                        <div class="login_g">
+			                            <a href=""><img src="../img/bk.jpg" alt="" /></a>
+			                        </div>
+			                        <input type="hidden" id="smstate" value="1" />
+			                    </div>
+			                    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </body>
+    <script type="text/javascript">
+    	mui('.mui-scroll-wrapper').scroll({
+			bounce: true,
+			indicators: true,
+			deceleration:mui.os.ios?0.003:0.0009
+		});
+		mui('.mui-scroll').on('tap','.mui-control-item:not(.mui-active)',function(){
+			mui('.mui-slider').slider().gotoItem(this.getAttribute('data-index'));
+		});
+    </script>
 </html>

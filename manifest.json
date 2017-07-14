@@ -380,7 +380,9 @@
 					"img/bk.jpg",
 					"img/yzm.png",
 					"img/dx.png",
-					"img/mm.png"
+					"img/mm.png",
+					"js/mui.min.js",
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -402,7 +404,9 @@
 					"css/mui.min.css",
 					"css/new/ad/baike.jpg"
 				],
-				"refer": [],
+				"refer": [
+					"views/details.html"
+				],
 				"priority": 0
 			},
 			"views/marketing/weixin.html": {
@@ -511,10 +515,12 @@
 					"img/bk.jpg",
 					"img/mm.png",
 					"js/mui.min.js",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"img/dx.png"
 				],
 				"refer": [
-					"views/member/index.html"
+					"views/member/index.html",
+					"views/password.html"
 				],
 				"priority": 0
 			},
@@ -558,7 +564,8 @@
 					"img/home1.png",
 					"css/new/images/find.png",
 					"img/go.png",
-					"css/public.css"
+					"css/public.css",
+					"css/new/public.css"
 				],
 				"refer": [
 					"views/member/topup.html",
@@ -693,7 +700,8 @@
 					"css/index.css",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"css/public.css"
+					"css/public.css",
+					"img/xuanzhong.png"
 				],
 				"refer": [
 					"views/cart/checkout.html"
@@ -724,6 +732,21 @@
 					"views/demand.html",
 					"views/member/index.html"
 				],
+				"priority": 0
+			},
+			"views/password.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"img/sj.png",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/reg.css",
+					"img/bk.jpg",
+					"img/dx.png",
+					"img/mm.png"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},
