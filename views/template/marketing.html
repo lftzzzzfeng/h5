@@ -14,7 +14,7 @@
 		<style>
 			html,
 			body {
-				background-color: #efeff4;
+				background-color: rgba(255,255,255,0.1);
 			}
 			.mui-loader {
 				position: absolute;
@@ -96,7 +96,7 @@
 			      	<a href="javascript:void(0);">
 			      		<img src="../../img/cart.png" />
 			      		<p>购物车</p>
-			      		<span id="spnCartItemNumber" class="foot_span mui-badge mui-badge-danger" style="background-color: #ff6401;">0</span>
+			      		<span id="cart_num_show" class="foot_span mui-badge mui-badge-danger" style="background-color: #ff6401;">0</span>
 			      	</a>
 			    </li>
 			    <li id="btnMember">
@@ -109,14 +109,12 @@
 		</div>
 	</body>
 	<script src="../../js/mui.min.js"></script>
-	<script type="text/javascript">
-		mui.init();
-		
+	<script type="text/javascript">  
 		var titleElem = document.getElementById("title");
 		var contentWebview = null,self = null;
 		
-		window.addEventListener("updateCart", function(e) {
-			document.getElementById("spnCartItemNumber").innerHTML = 100;
+		window.addEventListener("templateRefreshCart", function(e) {
+			ajax_cart_num();
 		});
 		
 		window.addEventListener("updateHeader", function(e) {
@@ -142,8 +140,32 @@
 			}
 		});
 		
-		mui.plusReady(function () {
+		function ajax_cart_num() {//获取购物车数量
+    		mui.ajax('http://m.meijiexia.com/android/ajax_cart_num',{
+				data: {uid:uid},
+				dataType: 'json',
+				type: 'post',
+				timeout: 10000,
+				success: function(data) {
+					console.log(JSON.stringify(data));
+					var str = JSON.stringify(data);
+					document.getElementById("cart_num_show").innerHTML = data.num;
+				},
+				error:function(xhr,type,errorThrown) {
+					plus.nativeUI.toast('服务器超时，请稍后重试！');
+					plus.nativeUI.closeWaiting();
+				}
+			});
+        }
+		
+        mui.plusReady(function () {
 			self = plus.webview.currentWebview();
+			uid = plus.storage.getItem('uid');
+			
+			if (uid) {
+				//获取购物车数量
+				ajax_cart_num();
+			}
 			
 			mui(document.body).on('tap', '#btnHome', function() {
 				mui.openWindow({url:'../../index.html', id:'btnHome'});
@@ -207,6 +229,11 @@
 			
 			mui(document.body).on('tap', '#btnMember', function() {
 				mui.openWindow({url:'../../views/member/index.html', id:'btnMember'});
+			});
+			
+			mui(document.body).on('tap', '#back', function() {
+				var opener = plus.webview.currentWebview().opener();
+                mui.fire(plus.webview.getWebviewById(opener.id), 'refreshCart', null);
 			});
 		});
 		

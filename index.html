@@ -18,39 +18,15 @@
 	        <img src="img/logo.png" />
 	        <div id="btnSeach">
 		        <div class="index_ss">
-		          <div class="mui-input-row mui-search" style="background:none; padding: 0;">
-		            <input name="v" value="" class="mui-input-clear m_in" placeholder="" data-input-clear="1" data-input-search="1" type="search"><span class="mui-icon mui-icon-clear mui-hidden"></span><span class="mui-placeholder"><span class="mui-icon mui-icon-search"></span><span>搜索服务</span></span>
-		          </div>
+		          	<div class="mui-input-row mui-search" style="background:none; padding: 0;">
+	            		<input name="v" value="" class="mui-input-clear m_in" placeholder="" data-input-clear="1" data-input-search="1" type="search"><span class="mui-icon mui-icon-clear mui-hidden"></span><span class="mui-placeholder"><span class="mui-icon mui-icon-search"></span><span>搜索服务</span></span>
+		          	</div>
 		        </div>
 	        </div>
 	    </div>
 	</header>
   	<div class="mui-content">
-  		<!--<div id="slider" class="mui-slider mui-fullscreen">
-			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-				<div class="mui-scroll">
-					<a class="mui-control-item mui-active" href="#item1mobile" data-wid="tab-top-subpage-1.html">
-						推荐
-					</a>
-					<a class="mui-control-item" href="#item2mobile" data-wid="tab-top-subpage-2.html">
-						热点
-					</a>
-					<a class="mui-control-item" href="#item3mobile" data-wid="tab-top-subpage-3.html">
-						北京
-					</a>
-					<a class="mui-control-item" href="#item4mobile" data-wid="tab-top-subpage-4.html">
-						社会
-					</a>
-					<a class="mui-control-item" href="#item5mobile" data-wid="tab-top-subpage-5.html">
-						娱乐
-					</a>
-					<a class="mui-control-item" href="#item6mobile" data-wid="tab-top-subpage-6.html">
-						科技
-					</a>
-				</div>
-			</div>
-		</div>-->
-	    <div class="list_con">
+  		<div class="list_con">
 		  	<dl id="btnSosuo" class="marketing">
 		  		<dd><a href="javascript:void(0);"><img title="搜索营销" src="img/ss_list.png" alt=""></a></dd>
 		        <dt><a href="javascript:void(0)" data-url="views/marketing/sosuo.html">搜索营销</a></dt>
@@ -155,7 +131,7 @@
 			      	<p>首页</p>
 			    </a>
 		    </li>
-		    <li id="btnDiscovery" data-title="发现" data-url="views/discovery/index.html">
+		    <li id="btnDiscovery" class="marketing" data-title="发现" data-url="views/discovery/index.html">
 		      	<a href="javascript:void(0);">
 		      		<img style="width:25px;margin-top: 1px;" src="img/find.png" />
 		      		<p>发现</p>
@@ -186,7 +162,7 @@
     <script type="text/javascript">
     	var subWebviewId = '';
     	
-      	mui.plusReady(function(){
+      	mui.plusReady(function() {
       		//获取当前登录用户
 	        var uid = plus.storage.getItem('uid');
 	        var tel = plus.storage.getItem('tel');
@@ -248,7 +224,7 @@
 				});
 		    }
       		
-		    function goMember(){
+		    function goMember() {
     			mui.openWindow({
 		          	url:'views/member/index.html',
 	            	id:'member',
@@ -275,6 +251,10 @@
 					document.getElementById('userChange').innerHTML = userChangeHtml;
 				}
 	        });
+			
+			window.addEventListener('refreshCart', function(e) {
+				ajax_cart_num();
+		    });
 			
 			//数据获取
 	        function ajax_content(){
@@ -511,6 +491,8 @@
 					title: title,
 					href: href
 				});
+				
+				mui.fire(marketingTemplate, 'templateRefreshCart');
 				
 				if (subWebview.getURL() == href) {
 				    subWebview.show();

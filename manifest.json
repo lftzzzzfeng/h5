@@ -462,7 +462,9 @@
 					"css/new/images/fxq.png",
 					"css/public.css"
 				],
-				"refer": [],
+				"refer": [
+					"views/details.html"
+				],
 				"priority": 0
 			},
 			"views/marketing/shuijun.html": {
@@ -680,7 +682,8 @@
 				"resources": [
 					"js/mui.min.js",
 					"css/help.css",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"css/public.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -712,7 +715,8 @@
 				"resources": [
 					"css/index.css",
 					"js/mui.min.js",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"css/public.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -723,7 +727,13 @@
 					"css/new/images/cart.png",
 					"css/mui.min.css",
 					"css/new/public.css",
-					"js/mui.min.js"
+					"js/mui.min.js",
+					"img/fxq.png",
+					"fonts/mui.ttf",
+					"img/mine.png",
+					"img/cart.png",
+					"img/find.png",
+					"img/home.png"
 				],
 				"refer": [
 					"index.html",

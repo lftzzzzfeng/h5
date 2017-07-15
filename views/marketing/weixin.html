@@ -18,13 +18,10 @@
 		    <div class="list_ula">
 		        <div style="height: 48px;" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 		            <div class="mui-scroll" style="width:100%;">
-		              <a href="javascript:void(0);" class="category mui-control-item mui-active" style="line-height: 47px;width:33.3%;">
+		              <a data-category-id="http://m.meijiexia.com/android/loadmedia" href="javascript:void(0);" class="category mui-control-item mui-active" style="line-height: 47px;width:33.3%;">
 		                  	微信营销
 		              </a>
-		              <a href="javascript:void(0);" class="category mui-control-item" style="line-height: 47px;width:33.3%;">
-		                  	朋友圈营销
-		              </a>
-		              <a href="javascript:void(0);" class="category mui-control-item" style="line-height: 47px;width:33.3%;">
+		              <a data-category-id="http://m.meijiexia.com/android/loadweibo" href="javascript:void(0);" class="category mui-control-item" style="line-height: 47px;width:33.3%;">
 		                  	微博营销
 		              </a>
 		            </div>
@@ -113,9 +110,33 @@
 			      </li>
 			    </ul>
 			</div>
+			<div id="divWeiboPopup" class="mui-popover mui-popover-bottom mui-popover-action ">
+		    <!-- 可选择菜单 -->
+			    <ul class="mui-table-view">
+			      <li class="mui-table-view-cell weiboTopnewsType">
+			        <a href="javascript:void(0);">硬广转发</a>
+			      </li>
+			      <li class="mui-table-view-cell weiboTopnewsType">
+			        <a href="javascript:void(0);">硬广直发</a>
+			      </li>
+			      <li class="mui-table-view-cell weiboTopnewsType">
+			        <a href="javascript:void(0);">软广转发</a>
+			      </li>
+			      <li class="mui-table-view-cell weiboTopnewsType">
+			        <a href="javascript:void(0);">软广直发</a>
+			      </li>
+			    </ul>
+			    <!-- 取消菜单 -->
+			    <ul class="mui-table-view">
+			      <li class="mui-table-view-cell">
+			        <a href="#divWeiboPopup"><b>取消</b></a>
+			      </li>
+			    </ul>
+			</div>
 		</div>
 		<script src="../../js/mui.min.js"></script>
 		<script type="text/javascript">
+			var url = 'http://m.meijiexia.com/android/loadmedia';
 			var categories = '';
 	  		var pageNumber = 1;
 	  		var categoryId = 0;
@@ -142,12 +163,12 @@
 			});
 			
 			function loadCategoryItems(categoryId) {
-				mui.ajax('http://m.meijiexia.com/android/loaddata', {
+				mui.ajax(url, {
 					data:{
 						p: pageNumber,
-						cate: categoryId,
-						tab: overallTable,
-						uid: uid
+//						cate: categoryId,
+//						tab: overallTable,
+//						uid: uid
 					},
 					dataType:'json',
 					type:'post',
@@ -165,47 +186,94 @@
 						var content = '';
 						var divListCategoryItems = document.getElementById('divListCategoryItems');
 						
-						for (var categoryItemCounter = 0; categoryItemCounter < categoryItems.length; categoryItemCounter++) {
-							content += "<tr style=\"border-bottom:none;\">";
-							content += "<td width=\"90px\" style=\"text-align: center;\">";
-							content += "<img src=\""+categoryItems[categoryItemCounter].imgurl+"\" style=\"border-radius:50px;width:75px;\">";
-							content += "</td>";
-							content += "<td>";
-							content += "<p class=\"ta_bt\" style=\"overflow:hidden; height:20px; margin-bottom:3px\">"+categoryItems[categoryItemCounter].title+"</p>";
-							content += "<p class=\"ta_bta\" style=\"margin-bottom:3px;\">粉丝数：314万</p>";
-							content += "<button id=\"showMenhu_640\" class=\"mui-btn mui-btn-block btn_state\" tid=\"640\" type=\"button\" style=\"font-size:14px; width:88px; padding:5px; height:25px; margin-bottom:0px; line-height:17px;\">";
-							content += "<span id=\"showType_640\" class=\"softTopNews\">软广头条</span>";
-							content += "<span class=\"mui-icon mui-icon-arrowdown softTopNewsArrow\" style=\"margin-left:-3px;\"></span>";							
-							content += "</button>";
-							content += "<input type=\"hidden\" id=\"wzarr_640\" class=\"wzarr_btn\" value=\"\">";
-							content += "</td>";
-							content += "<td width=\"10%\">";
-							content += "<input type=\"hidden\" id=\"goods_640\" value=\"three\">";
-							content += "<div class=\"checkboxborderm checkbox_btn\" style=\"margin-right:50%;\" tid=\"0\" tab=\"wxpro\" pid=\"640\"></div>";
-							content += "</td>";
-							content += "</tr>";
-							content += "<tr>";
-							content += "<td colspan=\"3\">";
-							content += "<ul class=\"table_ul\" style=\"height:45px;\">";
-							content += "<li style=\"height:20px;\">";
-							content += "<p class=\"p_tap\"><span>软</span>头条</p>";
-							content += "<p class=\"p_tapa\">￥360150.00</p>";
-							content += "</li>";
-							content += "<li style=\"height:20px;\">";
-							content += "<p class=\"p_tap\"><span>软</span>非头条</p>";
-							content += "<p class=\"p_tapa\">￥144150.00</p>";
-							content += "</li>";
-							content += "<li style=\"height:20px;\">";
-							content += "<p class=\"p_tab\"><span>硬</span>头条</p>";
-							content += "<p class=\"p_tapa\" style=\"color:red;\">不接单</p>";
-							content += "</li>";
-							content += "<li style=\"height:20px;\">";
-							content += "<p class=\"p_tab\"><span>硬</span>非头条</p>";
-							content += "<p class=\"p_tapa\" style=\"color: red;\">不接单</p>";
-							content += "</li>";
-							content += "</ul>";
-							content += "</td>";
-							content += "</tr>";
+						if (url == "http://m.meijiexia.com/android/loadmedia") {
+							for (var categoryItemCounter = 0; categoryItemCounter < categoryItems.length; categoryItemCounter++) {
+								content += "<tr style=\"border-bottom:none;\">";
+								content += "<td width=\"90px\" style=\"text-align: center;\">";
+								content += "<img src=\""+categoryItems[categoryItemCounter].imgurl+"\" style=\"border-radius:50px;width:75px;\">";
+								content += "</td>";
+								content += "<td>";
+								content += "<p class=\"ta_bt\" style=\"overflow:hidden; height:20px; margin-bottom:3px\">"+categoryItems[categoryItemCounter].title+"</p>";
+								content += "<p class=\"ta_bta\" style=\"margin-bottom:3px;\">粉丝数："+categoryItems[categoryItemCounter].fans+"万</p>";
+								content += "<button id=\"showMenhu_640\" class=\"mui-btn mui-btn-block btn_state\" tid=\"640\" type=\"button\" style=\"font-size:14px; width:88px; padding:5px; height:25px; margin-bottom:0px; line-height:17px;\">";
+								content += "<span id=\"showType_640\" class=\"softTopNews\">"+categoryItems[categoryItemCounter].p+"</span>";
+								content += "<span class=\"mui-icon mui-icon-arrowdown softTopNewsArrow\" style=\"margin-left:-3px;\"></span>";							
+								content += "</button>";
+								content += "<input type=\"hidden\" id=\"wzarr_640\" class=\"wzarr_btn\" value=\"\">";
+								content += "</td>";
+								content += "<td width=\"10%\">";
+								content += "<input type=\"hidden\" id=\"goods_640\" value=\"three\">";
+								content += "<div class=\"checkboxborderm"+(categoryItems[categoryItemCounter].show ? "Ck" : "")+" checkbox_btn\" style=\"margin-right:50%;\" tid=\""+categoryItems[categoryItemCounter].show+"\" tab=\"wxpro\" pid=\"640\"></div>";
+								content += "</td>";
+								content += "</tr>";
+								content += "<tr>";
+								content += "<td colspan=\"3\">";
+								content += "<ul class=\"table_ul\" style=\"height:45px;\">";
+								content += "<li style=\"height:20px;\">";
+								content += "<p class=\"p_tap\"><span>软</span>头条</p>";
+								content += categoryItems[categoryItemCounter].show_three;
+								content += "</li>";
+								content += "<li style=\"height:20px;\">";
+								content += "<p class=\"p_tap\"><span>软</span>非头条</p>";
+								content += categoryItems[categoryItemCounter].show_four;
+								content += "</li>";
+								content += "<li style=\"height:20px;\">";
+								content += "<p class=\"p_tab\"><span>硬</span>头条</p>";
+								content += categoryItems[categoryItemCounter].show_one;
+								content += "</li>";
+								content += "<li style=\"height:20px;\">";
+								content += "<p class=\"p_tab\"><span>硬</span>非头条</p>";
+								content += categoryItems[categoryItemCounter].show_two;
+								content += "</li>";
+								content += "</ul>";
+								content += "</td>";
+								content += "</tr>";
+							}
+						}
+						
+						if (url == "http://m.meijiexia.com/android/loadweibo") {
+							for (var categoryItemCounter = 0; categoryItemCounter < categoryItems.length; categoryItemCounter++) {
+								content += "<tr style=\"border-bottom:none;\">";
+								content += "<td width=\"90px\" style=\"text-align: center;\">";
+								content += "<img src=\""+categoryItems[categoryItemCounter].imgurl+"\" style=\"border-radius:50px;width:75px;\">";
+								content += "</td>";
+								content += "<td>";
+								content += "<p class=\"ta_bt\" style=\"overflow:hidden; height:20px; margin-bottom:3px\">"+categoryItems[categoryItemCounter].title+"</p>";
+								content += "<p class=\"ta_bta\" style=\"margin-bottom:3px;\">粉丝数："+categoryItems[categoryItemCounter].fans+"万</p>";
+								content += "<button id=\"showMenhu_640\" class=\"mui-btn mui-btn-block btn_state\" tid=\"640\" type=\"button\" style=\"font-size:14px; width:88px; padding:5px; height:25px; margin-bottom:0px; line-height:17px;\">";
+								content += "<span id=\"spnWeiboPopup\">"+categoryItems[categoryItemCounter].p+"</span>";
+								content += "<span class=\"mui-icon mui-icon-arrowdown\" style=\"margin-left:-3px;\"></span>";							
+								content += "</button>";
+								content += "<input type=\"hidden\" id=\"wzarr_640\" class=\"wzarr_btn\" value=\"\">";
+								content += "</td>";
+								content += "<td width=\"10%\">";
+								content += "<input type=\"hidden\" id=\"goods_640\" value=\"three\">";
+								content += "<div class=\"checkboxborderm"+(categoryItems[categoryItemCounter].show ? "Ck" : "")+" checkbox_btn\" style=\"margin-right:50%;\" tid=\""+categoryItems[categoryItemCounter].show+"\" tab=\"wxpro\" pid=\"640\"></div>";
+								content += "</td>";
+								content += "</tr>";
+								content += "<tr>";
+								content += "<td colspan=\"3\">";
+								content += "<ul class=\"table_ul\" style=\"height:45px;\">";
+								content += "<li style=\"height:20px;\">";
+								content += "<p class=\"p_tap\"><span>软</span>转发</p>";
+								content += categoryItems[categoryItemCounter].show_three;
+								content += "</li>";
+								content += "<li style=\"height:20px;\">";
+								content += "<p class=\"p_tap\"><span>软</span>直发</p>";
+								content += categoryItems[categoryItemCounter].show_four;
+								content += "</li>";
+								content += "<li style=\"height:20px;\">";
+								content += "<p class=\"p_tab\"><span>硬</span>转发</p>";
+								content += categoryItems[categoryItemCounter].show_one;
+								content += "</li>";
+								content += "<li style=\"height:20px;\">";
+								content += "<p class=\"p_tab\"><span>硬</span>直发</p>";
+								content += categoryItems[categoryItemCounter].show_two;
+								content += "</li>";
+								content += "</ul>";
+								content += "</td>";
+								content += "</tr>";
+							}
 						}
 						
 						switch (loadType) {
@@ -247,13 +315,13 @@
 //				mask.show();
 //				mask.close();
 				
-				loadCategoryItems(categoryId);
+				loadCategoryItems(0);
 				
 				mui(document.body).on('tap', ".category", function() {
 					pageNumber = 1;
 	  				loadType = 1;
-	  				categoryId = this.getAttribute('data-category-id');
-	  				loadCategoryItems(categoryId);
+	  				url = this.getAttribute('data-category-id');
+	  				loadCategoryItems(0);
 	  			});
 	  			
 	  			mui(document.body).on("tap", ".index_tcpr", function() {
@@ -285,6 +353,16 @@
   					var topNewsType = document.getElementById('showType_640');
   					topNewsType.innerHTML = this.children[0].innerHTML;
   					mui('#sheet').popover('hide');
+  				});
+  				
+  				mui(document.body).on('tap', '#spnWeiboPopup', function() {
+  					mui('#divWeiboPopup').popover('show');
+  				});
+  				
+  				mui(document.body).on('tap', '.weiboTopnewsType', function() {
+  					var topNewsType = document.getElementById('spnWeiboPopup');
+  					topNewsType.innerHTML = this.children[0].innerHTML;
+  					mui('#divWeiboPopup').popover('hide');
   				});
   				
   				mui(document.body).on('tap', '.addToCart', function() {
