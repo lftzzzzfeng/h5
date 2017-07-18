@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width" />
+	    <link href="../../css/mui.min.css" rel="stylesheet" />
+	    <link href="../../css/new/member.css" rel="stylesheet"/>
+	    <script src="../../js/mui.min.js"></script>
+	    <script type="text/javascript" charset="utf-8">
+	        mui.init();
+	        $(function() {	
+				$('.cai ul li').click(function() {
+					$(this).addClass('hit').siblings().removeClass('hit');
+					$('.paness>div:eq('+$(this).index()+')').show().siblings().hide();	
+				});
+			});
+	    </script>
+	    <style type="text/css">
+	    	.dropload-down{text-align:center;}
+	    </style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav ss_c">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
+			<p class="hede_p">财务中心</p>
+			<div class="ss_right"><a href="http://[::1]/m/member"><img style="width:20px;" src="http://[::1]/m/statics/new/images/mine.png" /></a></div>	
+		</header>
+		<div class="mui-content">
+			<div class="cai">
+				<ul>
+					<li class="hit">消费记录</li>
+					<li>充值记录</li>
+					<li>开发票</li>
+				</ul>
+				<div class="paness" id="loaddataFin">
+					<div class="panea" style="display: block;">
+						<div class="cai_t">账号余额:<span>149410.00</span></div>
+						<div class="cai_b"><a href="http://[::1]/m/member/recharge">充值</a></div>
+						<div class="jl_t">
+							<table id="list_fin_content" border="1" cellspacing="0" width="95%" style=" margin:0 auto ; border-collapse: collapse" bordercolor="#E5E5E5" cellpadding="0"> 
+								<tr class="jl_t_tr">
+  									<td style=" width: 35%;">时间</td>
+  									<td>金额</td>
+ 									<td>方式</td>
+								</tr> 
+								<tr class="jl_t_td">
+  									<td style=" width: 35%;">
+				                        2017-07-01					                       
+  									</td>
+  									<td>164.00</td>
+  									<td>
+		                        		余额支付
+  									</td>
+								</tr>
+								<tr class="jl_t_td">
+  									<td style=" width: 35%;">
+			                        	2017-06-30					                       
+  									</td>
+  									<td>6.00</td>
+  									<td>
+		                        		余额支付
+  									</td>
+								</tr>
+								<tr class="jl_t_td">
+  									<td style=" width: 35%;">
+				                        2017-06-15					                       
+  									</td>
+  									<td>50.00</td>
+  									<td>
+                						余额支付
+  									</td>
+								</tr>
+								<tr class="jl_t_td">
+  									<td style=" width: 35%;">
+				                        2017-06-15					                       
+  									</td>
+  									<td>50.00</td>
+  									<td>
+				                        余额支付
+  									</td>
+								</tr>
+								<tr class="jl_t_td">
+  									<td style=" width: 35%;">
+				                        2017-06-15					                       
+  									</td>
+  									<td>50.00</td>
+  									<td>
+		                        		余额支付
+  									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="panea" id="loaddataPay">
+						<div class="cai_t">账号余额:<span>149410.00</span></div>
+						<div class="cai_b"><a href="http://[::1]/m/member/recharge">充值</a></div>
+						<div class="cai_biao">
+							<table id="list_pay_content" border="1" cellspacing="0" width="100%" style="border-collapse: collapse" bordercolor="#E5E5E5" cellpadding="0"> 
+								<tr class="tui_hao_b_tr"> 
+									<td>方式</td>
+									<td>金额</td>
+									<td>时间</td>
+									<td>状态</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="panea">
+						<div class="kai_t">
+							<div class="kai_t_l">可开发票金额<span> ¥0.00</span></div>
+							<div class="kai_t_r"><a href="">我要开发票</a></div>
+						</div>
+						<div class="kai_z">
+							<div class="kai_z_t">温馨提示</div>
+							<div class="kai_z_b">
+								1、单次最低可开发票为500元起<br />
+								2、一个账户只能用一个专票名称，如需新的专票名称，请申请新的账户消费<br />
+								3、申请发票成功后我们将会在三个工作日以内给您开发票<br />
+								4、可开专票或普票<br />
+								5、开票金额不能超过“可开发票”总金额<br />
+								6、如果收票成功后您未确认收票，系统将在一周后默认收票成功
+							</div>
+						</div>
+						<div class="kai_b">
+							<div class="kai_b_t">开票历史</div>
+							<div class="kai_b_b">
+								<table border="1" cellspacing="0" width="100%" bordercolor="#E5E5E5" cellpadding="0"> 
+									<tr class="jl_t_tr">
+	  									<td style=" width: 35%;">申请时间</td>
+	  									<td>金额</td>
+	 									<td>状态</td>
+	  									<td>更多</td>
+									</tr> 
+									<tr class="jl_t_td">
+	  									<td style=" width: 35%;">2017-05-22</td>
+	  									<td>100.00</td>
+	  									<td>支付宝</td>
+	  									<td>
+	  										<div class="login-header"><a href="javascript:void(0);"><img style="width: 18px; padding-top: 4px;" src="http://[::1]/m/statics/new/images/1.png" /></a></div>
+												<div class="login">
+	    											<div class="login-title"><span><a href="javascript:void(0);" class="close-login">关闭</a></span></div>
+		    										<div class="login-input-content">
+		    											<div class="login-input-content_t">快递公司：顺丰快递公司</div>
+		    											<div class="login-input-content_t">快递单号：6542318976547890</div>
+		    											<div class="login-input-content_t">开票时间：2017-05-26</div>
+		    										</div>
+	    										</div>
+											<div class="login-bg"></div>
+	  									</td>
+	  								</tr> 
+									<tr class="jl_t_td">
+	  									<td style=" width: 30%;">&nbsp;</td>
+	  									<td>&nbsp;</td>
+	  									<td>&nbsp;</td>
+	  									<td></td>
+									</tr> 
+									<tr class="jl_t_td">
+	  									<td style=" width: 30%;">&nbsp;</td>
+	  									<td>&nbsp;</td>
+	  									<td>&nbsp;</td>
+	  									<td>&nbsp;</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	</script>
+</html>

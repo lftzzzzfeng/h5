@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../../js/mui.min.js"></script>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link href="../../css/new/member.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+        	mui.plusReady(function(){
+        		var tel = plus.storage.getItem('tel');
+        		var uid = plus.storage.getItem('uid');
+        		document.getElementById("user_name").innerHTML = tel;
+        		//获取页面间传值
+        		var self = plus.webview.currentWebview();
+			var pageFrom = self.pageFrom;
+			if(pageFrom == 'login'){//刷新首页面
+                var opener = plus.webview.currentWebview().opener();
+                mui.fire(plus.webview.getWebviewById('HBuilder'), 'indexLoginCk', null);
+			}else if(pageFrom == 'reg'){
+				var opener = plus.webview.currentWebview().opener();
+                mui.fire(plus.webview.getWebviewById('HBuilder'), 'indexLoginCk', null);
+			}
+        		//关闭登录页面
+        		var loginwebView = plus.webview.getWebviewById('btnLogin');
+        		if(loginwebView){
+        			loginwebView.hide();
+        			loginwebView.close();
+        		}	
+        		var regwebView = plus.webview.getWebviewById('btnReg');
+        		if(regwebView){
+        			regwebView.hide();
+        			regwebView.close();
+        		}
+        		function get_member_info(uid){
+        			mui.ajax('http://m.meijiexia.com/android/ajax_member_info',{
+					data:{uid:uid},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					success:function(data){
+						
+						if(data.grade == 2){//grade_info
+							document.getElementById("grade_info").innerHTML = '白金会员';
+						}else if(data.grade == 3){
+							document.getElementById("grade_info").innerHTML = '钻石会员';
+						}else if(data.grade == 4){
+							document.getElementById("grade_info").innerHTML = '城市拍档';
+						}else{
+							document.getElementById("grade_info").innerHTML = '普通会员';
+						}
+						document.getElementById("keepNum").innerHTML = data.keepnum;
+						document.getElementById("noPay").innerHTML = data.nopay;
+						document.getElementById("moneyNum").innerHTML = data.money;
+						
+						document.getElementById("cashNum").innerHTML = data.cash;
+						document.getElementById("userNum").innerHTML = data.userNum;
+						document.getElementById("orderNum").innerHTML = data.orderNum;
+						document.getElementById("allNum").innerHTML = data.allNum;
+					},
+					error:function(xhr,type,errorThrown){
+						plus.nativeUI.toast('服务器超时，请稍后重试！');
+						plus.nativeUI.closeWaiting();
+					}
+				});
+        		}
+        		get_member_info(uid);
+        });
+    </script>
+</head>
+<body>
+  <header class="mui-bar mui-bar-nav ss_c">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
+		<p class="hede_p">关注产品</p>
+		<div class="ss_right"><a href=""><img style="width:20px;" src="../../img/mine.png" /></a></div>	
+	</header>
+	<div class="mui-content" id="loaddata">
+		<div class="gzcp" id="list_content">
+			<div class="gzcp_top" style="height: 5px;"></div>
+			<!--
+            	作者：690735047@qq.com
+            	时间：2017-07-16
+            	描述：列表开始
+            -->
+			<div class="gz_cp" id="div_">
+				<a href=""><img src="http://img.meijiexia.com/prologo/20170614246481.jpg" /></a>
+				<div class="gz_cpright">
+					<p class="cpr_p"><a href="">【一般行业】百度知道/知道问答/口碑推广/问答推广/问答营销(600元/100组)</a></p>
+					<p class="cpr_pp"><span>￥110</span></p>
+				</div>
+				<div class="cpr_btn">
+					<a target="_blank" href="<?php echo base_url();?>buy?ev=<?php echo $val['tab'];?>@<?php echo $val['proid'];?>" class="cb_l">立即购买</a>
+					<a href="javascript:void(0);" tid="<?php echo $val['proid'];?>" tab="<?php echo $val['type'];?>" class="cb_la">移除</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

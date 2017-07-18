@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../../js/mui.min.js"></script>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link href="../../css/new/member.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+        	mui.plusReady(function(){
+        		var uid = plus.storage.getItem('uid');//登陆用户ID
+        		
+        		var contacts = document.getElementById('contacts');
+        		var phone = document.getElementById('phone');
+        		var weixin = document.getElementById('weixin');
+        		var qq = document.getElementById('qq');
+        		var company = document.getElementById('company');
+        		var url = document.getElementById('url');
+        		//获取已添加信息
+        		function get_member_sub_info(uid){
+        			mui.ajax('http://m.meijiexia.com/android/ajax_member_sub_info',{
+					data:{uid:uid},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					success:function(data){
+						contacts.value = data.contacts;
+						phone.value = data.phone;
+						weixin.value = data.weixin;
+						qq.value = data.qq;
+						company.value = data.company;
+						url.value = data.url;
+					},
+					error:function(xhr,type,errorThrown){
+						plus.nativeUI.toast('服务器超时，请稍后重试！');
+						plus.nativeUI.closeWaiting();
+					}
+				});
+        		}
+        		get_member_sub_info(uid);
+        		function edit_member_sub_info(uid){
+        			var name =  contacts.value;
+        			var tel =  phone.value;
+        			var wx =  weixin.value;
+        			var qier =  qq.value;
+        			var gongsi =  company.value;
+        			var www =  url.value;
+        			mui.ajax('http://m.meijiexia.com/android/ajax_member_sub_info_edit',{
+					data:{uid:uid,name:name,tel:tel,wx:wx,qier:qier,gongsi:gongsi,www:www},
+					dataType:'json',
+					type:'post',
+					timeout:10000,
+					success:function(data){
+						plus.nativeUI.toast('信息更新成功！');
+						plus.nativeUI.closeWaiting();
+						location.reload();
+					},
+					error:function(xhr,type,errorThrown){
+						plus.nativeUI.toast('服务器超时，请稍后重试！');
+						plus.nativeUI.closeWaiting();
+					}
+				});
+        		}
+        		//提交信息  infoSub
+        		document.getElementById('infoSub').addEventListener('tap', function() {
+        			var btnArray = ['否', '是'];  
+                mui.confirm('确定要修改账号信息吗？', '信息修改', btnArray, function(e) {  
+                    if (e.index == 1) {  
+                        edit_member_sub_info(uid);
+                    }
+                })
+        		});
+        		function edit_member_pwd(uid){
+        			var password =  document.getElementById('password').value;
+        			var newpwd =  document.getElementById('newpwd').value;
+        			var newpwd1 =  document.getElementById('newpwd1').value;
+        			if(newpwd != newpwd1){
+        				plus.nativeUI.toast('2次输入的密码不一致！');
+					plus.nativeUI.closeWaiting();
+        			}else{
+        				mui.ajax('http://m.meijiexia.com/android/ajax_member_pwd_edit',{
+						data:{uid:uid,pwd:password,newpwd:newpwd,newpwd1:newpwd1},
+						dataType:'json',
+						type:'post',
+						timeout:10000,
+						success:function(data){
+							if(data.state == 2){
+								plus.nativeUI.toast('原密码错误！');
+								plus.nativeUI.closeWaiting();
+							}else if(data.state == 1){
+								plus.nativeUI.toast('两次密码不一致！');
+								plus.nativeUI.closeWaiting();
+							}else{
+								plus.nativeUI.toast('密码修改成功！');
+								plus.nativeUI.closeWaiting();
+								location.reload();
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							plus.nativeUI.toast('服务器超时，请稍后重试！');
+							plus.nativeUI.closeWaiting();
+						}
+					});
+        			}
+        		}
+        		//修改密码 pwdSub
+        		document.getElementById('pwdSub').addEventListener('tap', function() {
+        			var btnArray = ['否', '是'];  
+                mui.confirm('确定要修改密码吗？', '密码修改', btnArray, function(e) {  
+                    if (e.index == 1) {  
+                        edit_member_pwd(uid);
+                    }
+                })
+        		});
+        });
+    </script>
+</head>
+<body>
+  <header class="mui-bar mui-bar-nav ss_c">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
+	<p class="hede_p">账号管理</p>
+	<div class="ss_right"></div>	
+	</header>
+	<div class="mui-content">
+		<div id="slider" class="mui-slider mui-fullscreen" style="top: 60px;">
+			<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<div class="mui-scroll" style="width:100%;">
+					<a class="mui-control-item mui-active" data-index="0" style="width:50%;">我的信息</a>
+					<a class="mui-control-item" data-index="1" style="width:50%;">修改密码</a>
+				</div>
+			</div>
+			
+			<div class="mui-slider-group">
+					<div class="mui-slider-item mui-control-content mui-active" style="background: #FFFFFFf;">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="ul_li" style="min-height: 10px;">
+									<div class="paness">
+										<div class="panea" style="display: block;">
+											<form action="" id="infoForm" method="post">
+											<div class="xinxi_t" style="min-height: 10px;">
+												<div class="xinxi_t_t">基本信息</div>
+												<div class="xinxi_t_b">
+													<div class="xinxi_t_b_l">联系人姓名</div>
+													<div class="xinxi_t_b_r"><input name="contacts" value="" id="contacts" type="text" placeholder="请输入联系人姓名" class="xinxi_t_b_r_biaodan"/></div>
+												</div>
+					
+												<div class="xinxi_t_b">
+													<div class="xinxi_t_b_l">联系电话</div>
+													<div class="xinxi_t_b_r"><input name="phone" value="" id="phone" type="text" placeholder="请输入联系电话" class="xinxi_t_b_r_biaodan"/></div>
+												</div>
+												<div class="xinxi_t_b">
+													<div class="xinxi_t_b_l">联系QQ</div>
+													<div class="xinxi_t_b_r"><input name="qq" value="" id="qq" type="text" placeholder="请输入QQ号" class="xinxi_t_b_r_biaodan"/></div>
+												</div>
+												<div class="xinxi_t_b">
+													<div class="xinxi_t_b_l">联系微信</div>
+													<div class="xinxi_t_b_r"><input name="weixin" value="" id="weixin" type="text" placeholder="请输入微信号" class="xinxi_t_b_r_biaodan"/></div>
+												</div>
+											</div>
+											<div class="xinxi_b" style="min-height: 10px;">
+												<div class="xinxi_t_t">企业信息</div>
+												<div class="xinxi_t_b">
+													<div class="xinxi_t_b_l">企业名称</div>
+													<div class="xinxi_t_b_r"><input name="company" value="" id="company" type="text" placeholder="请输入企业名称" class="xinxi_t_b_r_biaodan"/></div>
+												</div>
+												
+												<div class="xinxi_t_b">
+													<div class="xinxi_t_b_l">官方地址</div>
+													<div class="xinxi_t_b_r"><input name="url" value="" id="url" type="text" placeholder="请输入官方地址" class="xinxi_t_b_r_biaodan"/></div>
+												</div>
+											</div>
+											</form>
+											<div class="xinxi_t_bao" id="infoSub"><a href="javascript:void(0);">保存修改</a></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+					<div class="mui-slider-item mui-control-content" style="background: #ffffff;">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="ul_li">
+									<div class="paness">
+										<div class="panea" style="display: block;">
+											<div class="xinxi_t_b">
+												<div class="xinxi_t_b_l">原始密码</div>
+												<div class="xinxi_t_b_r"><input name="password" id="password" type="password" placeholder="请输入原密码" class="xinxi_t_b_r_biaodan"/></div>
+											</div>
+											<div class="xinxi_t_b">
+												<div class="xinxi_t_b_l">新密码</div>
+												<div class="xinxi_t_b_r"><input name="newpwd" id="newpwd" type="password" placeholder="请输入新密码" class="xinxi_t_b_r_biaodan"/></div>
+											</div>
+											<div class="xinxi_t_b">
+												<div class="xinxi_t_b_l">确认新密码</div>
+												<div class="xinxi_t_b_r"><input name="newpwd1" id="newpwd1" type="password" placeholder="请再次输入密码" class="xinxi_t_b_r_biaodan"/></div>
+											</div>
+											<div class="xinxi_t_bao" id="pwdSub"><a href="javascript:void(0);">保存修改</a></div>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>	
+			</div>
+		</div>	
+	</div>
+</body>
+<script type="text/javascript">
+    	mui('.mui-scroll-wrapper').scroll({
+			bounce: true,
+			indicators: true,
+			deceleration:mui.os.ios?0.003:0.0009
+		});
+		mui('.mui-scroll').on('tap','.mui-control-item:not(.mui-active)',function(){
+			mui('.mui-slider').slider().gotoItem(this.getAttribute('data-index'));
+		});
+    </script>
+</html>
