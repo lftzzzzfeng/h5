@@ -1,48 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link href="../../css/public.css" rel="stylesheet" />
-		<link href="../../css/help.css" rel="stylesheet"/>
+	    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width" />
+	    <link href="../../css/mui.min.css" rel="stylesheet" />
+	    <link href="../../css/new/member.css" rel="stylesheet"/>
+	    <style type="text/css">
+	    	.mui-toast-container{width: 90%;}
+	    </style>
+	    <script src="../../js/mui.min.js"></script>
+	    <script type="text/javascript">
+	        mui.init();
+	    </script>
 	</head>
-	<body>
+	<body style="background: #fff;">
 		<header class="mui-bar mui-bar-nav ss_c">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
-		    <p class="hede_p">充值</p>
+			<p class="hede_p">在线充值</p>
+			<div class="ss_right"><a href="javascript:void(0);"><img style="width:20px;" src="../../img/mine.png" /></a></div>	
 		</header>
-		<div class="mui-content">
-			<form action="http://m.meijiexia.com/service/recharge" id="payForm" method="post">
-				<div class="cz_p">支付方式</div>
-			    <div class="cz_zf" style="height: 50px;min-height: 50px;padding: 0px;width: 100%;">
-                    <div class="cz_zfl" id="pay_wx"><img src="http://m.meijiexia.com/statics/images/alipay2-2.png">支付宝</div>
-		            	<input type="hidden" name="paytype" value="alipay">
-		            </div>
-			    <div class="cz_p">选择金额</div>
-			    <div class="cz_zf">
-		    	   	<div class="share_b">
-		            	<input type="radio" name="radio1" id="radio1_1" value="radio1" style="display:none;"  />
-		            	<div class="share_radio" id="baijin">1000元(白金会员)<br/>享全场平均95折</div>    
-		          	</div>
-		          	<div class="share_b">
-			            <input type="radio" name="radio1" id="radio1_1" value="radio1" style="display:none;"  />
-			            <div class="share_radio" id="zuanshi">5000元(钻石会员)<br/>享全场平均95折</div>    
-		          	</div>
-			    </div>
-			    <div class="cz_p">
-			    	<p>充值金额</p>
-			        <input type="number" name="money" id="jiage" placeholder="可输入其他金额">
-			    </div>
-			    <div class="je_btn">
-			    	<input type="button" id="chongzhi" value="在线充值">
-			    </div>
-		    </<form>
+		<div class="mui-content" style="background: #fff;">
+			<div class="cwzx">
+				<div class="cwzx_top">
+					<p>选择金额：</p>
+					<div class="cwzx_right">
+						<div class="share_b">
+				            <div class="share_radio" tid="500">500元</div>    
+				        </div>
+				        <div class="share_b">
+				            <div class="share_radio" tid="1000">1000元</div>    
+			          	</div>
+			          	<div class="share_b">
+				            <div class="share_radio" tid="5000">5000元</div>    
+		        	  	</div>
+			          	<div class="share_b">
+			            	<div class="share_radio" tid="10000">10000元</div>    
+			          	</div>
+			          	<div class="share_b">
+			            	<div class="share_radio" tid="20000">20000元</div>    
+			          	</div>
+					</div>
+				</div>
+				<form action="#" id="payForm" method="post">
+					<div class="cz_je">
+						<p>充值金额：</p>
+						<input type="text" name="money" id="money" value="" placeholder="请输入金额" />
+					</div>
+					<div class="cz_je">
+						<div class="cz_jeleft">
+			            	<div class="share_radioa_select"></div>
+			            	<img src="../../img/cz_zfb.jpg" /><span>支付宝</span>
+						</div>
+					</div>
+				</form>
+				<div class="cz_zk">
+					<div class="cz_zkleft">
+				        <div class="share_radiob">充值1000元（白金会员）享受全场评价95折</div>
+					</div>
+					<div class="cz_zkleft">
+				        <div class="share_radiob">充值5000元（钻石会员）享受全场评价85折</div>
+					</div>
+				</div>
+				<p class="cz_p"><a href="javascript:void(0);">了解会员请点击查看</a></p>
+				<div class="cz_btn"><a href="javascript:void(0);" id="chongzhi">充值</a></div>
+				<div class="cz_sm">
+					<p class="sm_p" style="margin-bottom: 0">充值说明</p>
+					<p class="sm_pp">
+						1、最低充值额为100元，小于100元的不予受理<br />
+						2、目前只支持借记卡充值<br />
+						3、单笔充值金额不支持超过50000元
+					</p>
+				</div>
+			</div>
 		</div>
-		<script src="../../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
 		</script>
 	</body>
 </html>

@@ -130,7 +130,8 @@
 			"css/mui.min.css",
 			"img/ad/baike.jpg",
 			"css/public.css",
-			"js/mui.min.js"
+			"js/mui.min.js",
+			"img/xuanzhong.png"
 		],
 		"refer": [
 			"views/details.html"
@@ -189,7 +190,10 @@
 			"css/new/images/cart.png",
 			"css/new/images/list_s.jpg",
 			"css/mui.min.css",
-			"css/new/ad/baike.jpg"
+			"css/new/ad/baike.jpg",
+			"css/index.css",
+			"img/xuanzhong.png",
+			"css/new/index.css"
 		],
 		"refer": [
 			"views/details.html"
@@ -210,7 +214,8 @@
 			"css/new/images/cart.png",
 			"css/new/images/list_s.jpg",
 			"css/new/ad/baike.jpg",
-			"css/public.css"
+			"css/public.css",
+			"img/xuanzhong.png"
 		]
 	},
 	"views/marketing/advertisement.html": {
@@ -225,7 +230,8 @@
 			"css/new/ad/baike.jpg",
 			"css/new/images/ss.png",
 			"css/new/images/fxq.png",
-			"css/public.css"
+			"css/public.css",
+			"img/xuanzhong.png"
 		],
 		"refer": [
 			"views/details.html"
@@ -243,7 +249,8 @@
 			"css/new/ad/baike.jpg",
 			"css/new/images/ss.png",
 			"css/new/images/fxq.png",
-			"css/public.css"
+			"css/public.css",
+			"img/xuanzhong.png"
 		],
 		"refer": [
 			"views/details.html"
@@ -261,7 +268,11 @@
 			"css/new/ad/baike.jpg",
 			"css/new/images/ss.png",
 			"css/new/images/fxq.png",
-			"css/public.css"
+			"css/public.css",
+			"img/list_b.jpg",
+			"img/list_a.jpg",
+			"img/ad/baike.jpg",
+			"img/xuanzhong.png"
 		]
 	},
 	"views/marketing/tool.html": {
@@ -341,7 +352,15 @@
 			"css/new/images/find.png",
 			"img/go.png",
 			"css/public.css",
-			"css/new/public.css"
+			"css/new/public.css",
+			"css/new/member.css",
+			"img/next_r.png",
+			"img/dtj.png",
+			"img/zxz.png",
+			"img/ywc.png",
+			"img/cz.png",
+			"img/fp.png",
+			"img/cwmx.png"
 		],
 		"refer": [
 			"views/member/topup.html",
@@ -354,21 +373,29 @@
 			"views/member/invitingorder.html",
 			"views/member/helpcenter.html",
 			"views/member/browsehistory.html",
-			"views/member/favourite.html"
+			"views/member/favourite.html",
+			"views/member/setting.html",
+			"views/member/follow.html",
+			"views/member/history.html",
+			"views/member/financedetail.html",
+			"views/member/bonus.html"
 		]
 	},
 	"views/member/topup.html": {
 		"resources": [
 			"js/mui.min.js",
 			"css/mui.min.css",
-			"css/help.css"
+			"css/help.css",
+			"css/new/member.css",
+			"img/cz_zfb.jpg"
 		]
 	},
 	"views/member/order.html": {
 		"resources": [
 			"css/mui.min.css",
 			"js/mui.min.js",
-			"css/help.css"
+			"css/help.css",
+			"css/new/member.css"
 		]
 	},
 	"views/member/invitingorder.html": {
@@ -464,7 +491,10 @@
 			"css/index.css",
 			"js/mui.min.js",
 			"css/mui.min.css",
-			"css/public.css"
+			"css/public.css",
+			"img/xuanzhong.png",
+			"img/weixin.jpg",
+			"img/cz_wx.jpg"
 		]
 	},
 	"views/template/marketing.html": {
@@ -500,6 +530,33 @@
 			"img/bk.jpg",
 			"img/dx.png",
 			"img/mm.png"
+		]
+	},
+	"views/member/setting.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/new/member.css"
+		]
+	},
+	"views/member/follow.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/new/member.css"
+		]
+	},
+	"views/member/history.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/new/member.css"
+		]
+	},
+	"views/member/bonus.html": {
+		"resources": [
+			"css/mui.min.css",
+			"css/new/member.css"
 		]
 	}
 }

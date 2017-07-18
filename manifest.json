@@ -101,6 +101,9 @@
         },
         "NativeObj":{
         	"description": "原生对象"
+        },
+        "Payment": {
+        	"description": "支付"
         }
 	},
 	"plus": {
@@ -186,6 +189,15 @@
 					"hdpi": "", /*高分屏启动图片，分辨率：480x762*/
 					"xhdpi": "", /*720P高分屏启动图片，分辨率：720x1242*/
 					"xxhdpi": ""
+				}
+			},
+			"payment": {
+				"alipay": {
+					"description": "支付宝支付"
+				},
+				"weixin": {
+					"appid": "",
+					"description": "微信支付"
 				}
 			}
 		}
@@ -336,7 +348,8 @@
 					"css/mui.min.css",
 					"img/ad/baike.jpg",
 					"css/public.css",
-					"js/mui.min.js"
+					"js/mui.min.js",
+					"img/xuanzhong.png"
 				],
 				"refer": [
 					"views/details.html"
@@ -402,7 +415,10 @@
 					"css/new/images/cart.png",
 					"css/new/images/list_s.jpg",
 					"css/mui.min.css",
-					"css/new/ad/baike.jpg"
+					"css/new/ad/baike.jpg",
+					"css/index.css",
+					"img/xuanzhong.png",
+					"css/new/index.css"
 				],
 				"refer": [
 					"views/details.html"
@@ -424,7 +440,8 @@
 					"css/new/images/cart.png",
 					"css/new/images/list_s.jpg",
 					"css/new/ad/baike.jpg",
-					"css/public.css"
+					"css/public.css",
+					"img/xuanzhong.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -441,7 +458,8 @@
 					"css/new/ad/baike.jpg",
 					"css/new/images/ss.png",
 					"css/new/images/fxq.png",
-					"css/public.css"
+					"css/public.css",
+					"img/xuanzhong.png"
 				],
 				"refer": [
 					"views/details.html"
@@ -460,7 +478,8 @@
 					"css/new/ad/baike.jpg",
 					"css/new/images/ss.png",
 					"css/new/images/fxq.png",
-					"css/public.css"
+					"css/public.css",
+					"img/xuanzhong.png"
 				],
 				"refer": [
 					"views/details.html"
@@ -479,7 +498,11 @@
 					"css/new/ad/baike.jpg",
 					"css/new/images/ss.png",
 					"css/new/images/fxq.png",
-					"css/public.css"
+					"css/public.css",
+					"img/list_b.jpg",
+					"img/list_a.jpg",
+					"img/ad/baike.jpg",
+					"img/xuanzhong.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -567,7 +590,15 @@
 					"css/new/images/find.png",
 					"img/go.png",
 					"css/public.css",
-					"css/new/public.css"
+					"css/new/public.css",
+					"css/new/member.css",
+					"img/next_r.png",
+					"img/dtj.png",
+					"img/zxz.png",
+					"img/ywc.png",
+					"img/cz.png",
+					"img/fp.png",
+					"img/cwmx.png"
 				],
 				"refer": [
 					"views/member/topup.html",
@@ -580,7 +611,12 @@
 					"views/member/invitingorder.html",
 					"views/member/helpcenter.html",
 					"views/member/browsehistory.html",
-					"views/member/favourite.html"
+					"views/member/favourite.html",
+					"views/member/setting.html",
+					"views/member/follow.html",
+					"views/member/history.html",
+					"views/member/financedetail.html",
+					"views/member/bonus.html"
 				],
 				"priority": 0
 			},
@@ -588,7 +624,9 @@
 				"resources": [
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"css/help.css"
+					"css/help.css",
+					"css/new/member.css",
+					"img/cz_zfb.jpg"
 				],
 				"refer": [],
 				"priority": 0
@@ -597,7 +635,8 @@
 				"resources": [
 					"css/mui.min.css",
 					"js/mui.min.js",
-					"css/help.css"
+					"css/help.css",
+					"css/new/member.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -716,7 +755,10 @@
 					"css/index.css",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"css/public.css"
+					"css/public.css",
+					"img/xuanzhong.png",
+					"img/weixin.jpg",
+					"img/cz_wx.jpg"
 				],
 				"refer": [],
 				"priority": 0
@@ -758,6 +800,41 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"views/member/setting.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/new/member.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"views/member/follow.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/new/member.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"views/member/history.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/new/member.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"views/member/bonus.html": {
+				"resources": [
+					"css/mui.min.css",
+					"css/new/member.css"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -776,7 +853,6 @@
 				"img/pcb.png",
 				"img/index_gd.jpg",
 				"img/xqy_1.jpg",
-				"img/next_r.png",
 				"img/dd_3.png",
 				"img/cwzx_1.jpg",
 				"img/zh_01.gif",
@@ -785,17 +861,13 @@
 				"img/lc_1.jpg",
 				"img/05.png",
 				"img/index_ga.jpg",
-				"img/fp.png",
 				"img/cart_6.jpg",
-				"img/cz_wx.jpg",
 				"img/01.png",
 				"img/list_img.jpg",
 				"img/dd_3.jpg",
 				"img/lc_a.jpg",
 				"img/index_gg.jpg",
-				"img/cz_zfb.jpg",
 				"img/dd_2.png",
-				"img/cz.png",
 				"img/lb.png",
 				"img/dian.png",
 				"img/xz.jpg",
@@ -803,12 +875,10 @@
 				"img/zx.png",
 				"img/rjt_xia.jpg",
 				"img/wx.jpg",
-				"img/cwmx.png",
 				"img/list_a_h.jpg",
 				"img/4.png",
 				"img/close_02.png",
 				"img/mm-.png",
-				"img/ywc.png",
 				"img/start.png",
 				"img/close.png",
 				"img/index_gb.jpg",
@@ -823,12 +893,10 @@
 				"img/sss.png",
 				"img/cpb.png",
 				"img/zfb.jpg",
-				"img/dtj.png",
 				"img/index_gc.jpg",
 				"img/select.png",
 				"img/rjt.jpg",
 				"img/sx_xl.png",
-				"img/zxz.png",
 				"img/sx_sl.png",
 				"img/lc_3.jpg",
 				"img/04.png",

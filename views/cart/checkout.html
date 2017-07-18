@@ -15,15 +15,20 @@
 		</header>
 		<div class="mui-content" style="background: #f8f8f8;">
           	<div class="syt_con">
-		        <p class="syt_p">订单金额：¥520.00</p>
-		        <p class="syt_pp">订单编号：JC201707101002209564</p>
-		        <p class="syt_pp">订单日期：2017-07-10</p>
+		        <p id="pTotalMoney" class="syt_p">订单金额：¥520.00</p>
+		        <p id="pOrderNumber" class="syt_pp">订单编号：JC201707101002209564</p>
+		        <p id="pOrderDate" class="syt_pp">订单日期：2017-07-10</p>
 	      	</div>
 			<div class="zffs">
-                <div class="syt_zf" id="pay_ali" tid="1">
-                	<div class="share_radioCk" id="pay_ali_btn"></div> 
+                <div name="paymentGateway" data-payment-gateway="1" class="syt_zf">
+                	<div class="share_radio" id="divPayByAliPay"></div>
             		<img src="http://m.meijiexia.com/statics/new/images/zfb.jpg" style="width:30px;"/>
             		<p>支付宝</p>
+            	</div>
+            	<div name="paymentGateway" data-payment-gateway="2" class="syt_zf">
+                	<div class="share_radio" id="divPayByAliPay"></div>
+            		<img src="../../img/cz_wx.jpg" style="width:30px;"/>
+            		<p>微信</p>
             	</div>
                 <form action="http://m.meijiexia.com/pay" id="subForm" method="post">
 		          	<input type="hidden" name="pid" value="JC201707101002209564">
@@ -31,9 +36,9 @@
 		          	<input type="hidden" name="t" value="1499653374">
                   	<input type="hidden" name="tpay" id="tpay" value="2">
               	</form>
-        		<div class="qr_btn"><a href="javascript:void(0);" id="paying">确认支付</a></div>
+        		<div class="qr_btn"><a href="javascript:void(0);" id="aConfirmToPay">确认支付</a></div>
       		</div>
-            <div class="jylc">
+            <!--<div class="jylc">
           		<p>交易流程</p>
           		<div class="jylc_con">
 		            <ul>
@@ -44,20 +49,112 @@
 		              <li style="margin-right: 0;"><img src="http://m.meijiexia.com/statics/new/images/5.png" /><p>订单完成</p></li>
 		            </ul>
           		</div>
-    		</div>
+    		</div>-->
       	</div>
-    	<div class="cart_foot" style="border-top: 1px solid #e5e5e5;">
-      		<div class="cart_footleft" style="width:20%;">
-        		<div class="checkboxborderm inputa" style="margin-top: 14px;" tip="searpro_42"></div>全选
-      		</div>
-	      	<div class="cart_footmid" style="width:45%;">
-	          	<p>合计：<span id="allPrice"></span></p>
-	      	</div>
-      		<div id="divCheckout" class="cart_footright"><a href="javascript:void(0);">去结算(<span id="allNum"></span>)</a></div>
-    	</div>
 		<script src="../../js/mui.min.js"></script>
 		<script type="text/javascript">
+			var alipay = 'alipay';
+			var wxpay = 'wxpay';
+			var paymentGateway = 1;
 			mui.init();
+			
+			var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=0.01'; 
+	        var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=0.01';
+			
+			function loadOrderDetail(uid) {
+				mui.ajax('http://m.meijiexia.com/android/orderDetail', {
+					data: {uid:uid},
+					dataType: 'json',
+					type: 'post',
+					timeout: 10000,
+					success: loadOrderDetailSuccess,
+					error:function(xhr,type,errorThrown) {
+						plus.nativeUI.toast('服务器超时，请稍后重试！');
+						plus.nativeUI.closeWaiting();
+					}
+				});
+			}
+			
+			function loadOrderDetailSuccess(result) {
+				if (result) {
+					document.getElementById('pTotalMoney').innerHTML = '订单金额：¥520.00';
+					document.getElementById('pOrderNumber').innerHTML = '订单编号：JC201707101002209564';
+					document.getElementById('pOrderDate').innerHTML = '订单日期：2017-07-10';
+				}
+			}
+			
+			function pay(id) {
+                var PAYSERVER=''; 
+                if (id=='alipay') {
+	                PAYSERVER=ALIPAYSERVER; 
+	                channel = channel; 
+	            } else if (id=='wxpay') {
+                    PAYSERVER = WXPAYSERVER; 
+                    channel = channel;
+                } else {
+	                plus.nativeUI.alert("不支持此支付通道！", null, "捐赠"); 
+	                return; 
+             	}
+             	
+                var xhr = new XMLHttpRequest(); 
+                xhr.onreadystatechange = function() { 
+                    switch(xhr.readyState) { 
+                        case 4: 
+	                        if (xhr.status == 200) { 
+	                            plus.payment.request(channel, xhr.responseText, function(result) { 
+	                                plus.nativeUI.alert("支付成功！",function(){ 
+	                                back();
+	                            }); },function(error){ 
+	                                plus.nativeUI.alert("支付失败：" + error.code); 
+	                            }); 
+	                        } else { 
+                            	alert("获取订单信息失败！"); 
+	                        } 
+                        	break; 
+                    	default: 
+                    	break; 
+                	} 
+         		} 
+            	xhr.open('GET', PAYSERVER); 
+            	xhr.send(); 
+	    	}
+			
+			mui.plusReady(function() {
+				var uid = plus.storage.getItem('uid');
+				loadOrderDetail(uid);
+				
+				mui(document.body).on('tap', '.syt_zf', function() {
+					var gateway = this.getAttribute('data-payment-gateway');
+					mui('.syt_zf').each(function(index, element) {
+						if (gateway == element.getAttribute('data-payment-gateway')) {
+							this.children[0].className = "share_radioCk";
+						} else {
+							this.children[0].className = "share_radio";
+						}
+					});
+					
+					if (gateway == 1) {
+						paymentGateway = alipay;
+					} else if (gateway == 2) {
+						paymentGateway = wxpay;
+					}
+					
+					plus.payment.getChannels(function(channels) {
+						if (paymentGateway == alipay) {
+							channel = channels[0];	
+						} else if (paymentGateway == wxpay) {
+							channel = channels[1];
+						}
+						
+					}, function(e) {
+				        alert("获取支付通道失败："+e.message);
+				    });
+				});
+				
+				mui(document.body).on('tap', '#aConfirmToPay', function() {
+					pay(paymentGateway);
+				});
+			});
 		</script>
 	</body>
 </html>

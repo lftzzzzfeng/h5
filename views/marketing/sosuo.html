@@ -79,10 +79,10 @@
 	  		var pageNumber = 1;
 	  		var categoryId = 0;
 	  		var searchTable = 'search';
-//	  		var uid = plus.storage.getItem('uid');
 	  		var uid = 0;
-	  		
 	  		var loadType = 1;
+	  		var added = 1;
+	  		var deleted = 2;
 	  		
 	  		mui.init({
 				pullRefresh: {
@@ -153,6 +153,7 @@
 			}
 			
 			function loadCategoryItemsSuccess(result) {
+				console.log(JSON.stringify(result));
 				if (result) {
 					var categoryItems = result.list;
 					if (categoryItems) {
@@ -206,9 +207,31 @@
 				loadType = 3;
 				loadCategoryItems(categoryId);
 			}
+			
+			function loadCart(uid, pid, status, table) {
+				mui.ajax('http://m.meijiexia.com/android/cart_add', {
+					data:{
+						pid: pid,
+						state: status,
+						tab: table,
+						uid: uid
+					},
+					dataType: 'json',
+					type: 'post',
+					success: loadCartSuccess,
+					error: function(xhr, type, errorThrown) {
+						console.log(JSON.stringify(errorThrown));
+					}
+				});
+			}
+			
+			function loadCartSuccess(result) {
+				console.log(JSON.stringify(result));
+			}
 	  		
 	  		mui.plusReady(function() {
-//	  			loadCategories();abc
+//	  			loadCategories();
+				var uid = plus.storage.getItem('uid');
 	  			loadCategoryItems(categoryId);
 	  			
 	  			mui(document.body).on('tap', ".category", function() {
@@ -240,15 +263,23 @@
   				});
   				
   				mui(document.body).on('tap', '.addToCart', function() {
+  					var pid = this.getAttribute('pid');
+  					if (this.getAttribute('tid') == 0) {
+  						this.className = "addToCart checkboxbordermCk";
+						this.setAttribute('tid', '1');
+						loadCart(uid, pid, added, searchTable);
+  					} else {
+  						this.className = "addToCart checkboxborderm";
+						this.setAttribute('tid', '0');
+						loadCart(uid, pid, deleted, searchTable);
+  					}
+  					
   					var marketingTemplate = mui.preload({
 					    url:'views/template/marketing.html',
-					    id:'templateMarketing.html',
-					    styles:{
-					        popGesture:"hide"
-					    }
+					    id:'templateMarketing.html'
 					});
-  					
-					mui.fire(marketingTemplate, "updateCart");
+					
+					mui.fire(marketingTemplate, 'templateRefreshCart', null);
   				});
 	  		});
 	  	</script>

@@ -99,7 +99,7 @@
         	<div class="index_fhl" id="userChange">
           		<a style=" margin-left: 3%; color: #ff6401;" href="javascript:void(0);" id="btnLogin">登录</a>|<a href="javascript:void(0);" id="btnReg">注册</a>
         	</div>
-        	<div class="index_fhl"><p><a href="#scrollTop">回到顶部<img src="img/top.png" /></a></p></div>
+        	<!--<div class="index_fhl"><p><a href="#scrollTop">回到顶部<img src="img/top.png" /></a></p></div>-->
       	</div>
       
     </div>
@@ -161,6 +161,27 @@
 	<div id="refreshContainer"></div>
     <script type="text/javascript">
     	var subWebviewId = '';
+    	
+    	function loadCart(uid, pid, status, table) {
+			mui.ajax('http://m.meijiexia.com/android/cart_add', {
+				data:{
+					pid: pid,
+					state: status,
+					tab: table,
+					uid: uid
+				},
+				dataType: 'json',
+				type: 'post',
+				success: loadCartSuccess,
+				error: function(xhr, type, errorThrown) {
+					console.log(JSON.stringify(errorThrown));
+				}
+			});
+		}
+		
+		function loadCartSuccess(result) {
+			console.log(JSON.stringify(result));
+		}
     	
       	mui.plusReady(function() {
       		//获取当前登录用户
@@ -325,7 +346,7 @@
 	        }
 	        
 	        function ajax_com_list(){
-        		mui.ajax('http://m.meijiexia.com/android/ajax_com_list',{
+        		mui.ajax('http://m.meijiexia.com/android/ajax_com_list', {
 					data: {uid:uid,p:'1'},
 					dataType: 'json',
 					type: 'post',
@@ -333,15 +354,15 @@
 					success: function(data) {
 						var str = JSON.stringify(data);
 						//alert(str);
-						var index_contetn = ''
+						var index_contetn = '';
 						if (data.list.length > 0) {
 							for (var i = 0; i < data.list.length; i++) {
 								index_contetn += '<div class="index_tcp"><a href="'+data.list[i].url+'"><img alt="'+data.list[i].title+'" title="'+data.list[i].title+'" src="'+data.list[i].imgurl+'"></a>';
 								index_contetn += '<div class="index_tcpr"><p class="t_p"><a href="'+data.list[i].url+'">'+data.list[i].title+'</a></p><div class="t_pp"><p>¥'+data.list[i].price+'元</p></div></div>';
 								if (data.list[i].show == 1) {
-									index_contetn += '<div class="checkboxbordermCk" tid="1" tab="searpro" pid=""></div></div>';
+									index_contetn += '<div class="addToCart checkboxbordermCk" tid="1" tab="searpro" pid="'+data.list[i].id+'"></div></div>';
 								} else {
-									index_contetn += '<div class="checkboxborderm" tid="0" tab="searpro" pid=""></div></div>';
+									index_contetn += '<div class="addToCart checkboxborderm" tid="0" tab="searpro" pid="'+data.list[i].id+'"></div></div>';
 								}
 							}
 						}
@@ -393,6 +414,7 @@
 					timeout: 10000,
 					success: function(data) {
 						var str = JSON.stringify(data);
+						console.log(str);
 						//alert(str);
 						var index_contetn_click = ''
 						if (data.list.length > 0) {
@@ -400,9 +422,9 @@
 								index_contetn_click += '<div class="index_tcp"><a href="'+data.list[i].url+'"><img alt="'+data.list[i].title+'" title="'+data.list[i].title+'" src="'+data.list[i].imgurl+'"></a>';
 								index_contetn_click += '<div class="index_tcpr"><p class="t_p"><a href="'+data.list[i].url+'">'+data.list[i].title+'</a></p><div class="t_pp"><p>¥'+data.list[i].price+'元</p></div></div>';
 								if (data.list[i].show == 1) {
-									index_contetn_click += '<div class="checkboxbordermCk" tid="1" tab="searpro" pid=""></div></div>';
+									index_contetn_click += '<div class="addToCart checkboxbordermCk" tid="1" tab="searpro" pid="'+data.list[i].id+'"></div></div>';
 								} else {
-									index_contetn_click += '<div class="checkboxborderm" tid="0" tab="searpro" pid=""></div></div>';
+									index_contetn_click += '<div class="addToCart checkboxborderm" tid="0" tab="searpro" pid="'+data.list[i].id+'"></div></div>';
 								}
 							}
 							document.getElementById("index_content").insertAdjacentHTML('beforeend', index_contetn_click);
@@ -433,6 +455,20 @@
 			mui(document.body).on('tap', '#btnCart', function() {
 				mui.openWindow({url:'views/cart/index.html', id:'btnCard'});
 			});
+			
+			//addToCart
+//			mui(document.body).on('tap', '.addToCart', function() {
+//				var pid = this.getAttribute('pid');
+//				if (this.getAttribute('tid') == 0) {
+//					this.className = "addToCart checkboxbordermCk";
+//					this.setAttribute('tid', '1');
+//					loadCart(uid, pid, added, searchTable);
+//				} else {
+//					this.className = "addToCart checkboxborderm";
+//					this.setAttribute('tid', '0');
+//					loadCart(uid, pid, deleted, searchTable);
+//				}
+//			});
 			
 //			mui(document.body).on('tap', '#btnMember', function() {
 //				mui.openWindow({url:'views/member/index.html', id:'btnMember'});

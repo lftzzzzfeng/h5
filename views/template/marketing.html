@@ -112,6 +112,7 @@
 	<script type="text/javascript">  
 		var titleElem = document.getElementById("title");
 		var contentWebview = null,self = null;
+		var uid = "";
 		
 		window.addEventListener("templateRefreshCart", function(e) {
 			ajax_cart_num();
@@ -147,7 +148,6 @@
 				type: 'post',
 				timeout: 10000,
 				success: function(data) {
-					console.log(JSON.stringify(data));
 					var str = JSON.stringify(data);
 					document.getElementById("cart_num_show").innerHTML = data.num;
 				},
@@ -232,8 +232,13 @@
 			});
 			
 			mui(document.body).on('tap', '#back', function() {
-				var opener = plus.webview.currentWebview().opener();
-                mui.fire(plus.webview.getWebviewById(opener.id), 'refreshCart', null);
+//				var targetWebview = plus.webview.all()[0];
+//				console.log(JSON.stringify(plus.webview.all()));
+				var targetTemplate = mui.preload({
+				    id:'HBuilder'
+				});
+
+				mui.fire(targetTemplate, 'refreshCart', null);
 			});
 		});
 		

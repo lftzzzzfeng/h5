@@ -143,15 +143,12 @@
 	  		var overallTable = 'news_media';
 			var uid = 0;
 			var loadType = 1;
+			var added = 1;
+	  		var deleted = 2;
 			
 			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						auto: false,
-						callback: pulldownRefresh
-					},
 					up: {
 						height:50,
 						auto:false,
@@ -196,14 +193,14 @@
 								content += "<p class=\"ta_bt\" style=\"overflow:hidden; height:20px; margin-bottom:3px\">"+categoryItems[categoryItemCounter].title+"</p>";
 								content += "<p class=\"ta_bta\" style=\"margin-bottom:3px;\">粉丝数："+categoryItems[categoryItemCounter].fans+"万</p>";
 								content += "<button id=\"showMenhu_640\" class=\"mui-btn mui-btn-block btn_state\" tid=\"640\" type=\"button\" style=\"font-size:14px; width:88px; padding:5px; height:25px; margin-bottom:0px; line-height:17px;\">";
-								content += "<span id=\"showType_640\" class=\"softTopNews\">"+categoryItems[categoryItemCounter].p+"</span>";
+								content += "<span id=\"spn"+categoryItems[categoryItemCounter].id+"weixin\" class=\"softTopNews\">"+categoryItems[categoryItemCounter].p+"</span>";
 								content += "<span class=\"mui-icon mui-icon-arrowdown softTopNewsArrow\" style=\"margin-left:-3px;\"></span>";							
 								content += "</button>";
 								content += "<input type=\"hidden\" id=\"wzarr_640\" class=\"wzarr_btn\" value=\"\">";
 								content += "</td>";
 								content += "<td width=\"10%\">";
 								content += "<input type=\"hidden\" id=\"goods_640\" value=\"three\">";
-								content += "<div class=\"checkboxborderm"+(categoryItems[categoryItemCounter].show ? "Ck" : "")+" checkbox_btn\" style=\"margin-right:50%;\" tid=\""+categoryItems[categoryItemCounter].show+"\" tab=\"wxpro\" pid=\"640\"></div>";
+								content += "<div data-weixin-id=\"spn"+categoryItems[categoryItemCounter].id+"weixin\" class=\"addToCart checkboxborderm"+(categoryItems[categoryItemCounter].show ? "Ck" : "")+" checkbox_btn\" style=\"margin-right:50%;\" tid=\""+categoryItems[categoryItemCounter].show+"\" tab=\"wxpro\" pid=\""+categoryItems[categoryItemCounter].id+"\"></div>";
 								content += "</td>";
 								content += "</tr>";
 								content += "<tr>";
@@ -241,14 +238,14 @@
 								content += "<p class=\"ta_bt\" style=\"overflow:hidden; height:20px; margin-bottom:3px\">"+categoryItems[categoryItemCounter].title+"</p>";
 								content += "<p class=\"ta_bta\" style=\"margin-bottom:3px;\">粉丝数："+categoryItems[categoryItemCounter].fans+"万</p>";
 								content += "<button id=\"showMenhu_640\" class=\"mui-btn mui-btn-block btn_state\" tid=\"640\" type=\"button\" style=\"font-size:14px; width:88px; padding:5px; height:25px; margin-bottom:0px; line-height:17px;\">";
-								content += "<span id=\"spnWeiboPopup\">"+categoryItems[categoryItemCounter].p+"</span>";
+								content += "<span id=\"spn"+categoryItems[categoryItemCounter].id+"weibo\" class=\"softTopNewsWeibo\">"+categoryItems[categoryItemCounter].p+"</span>";
 								content += "<span class=\"mui-icon mui-icon-arrowdown\" style=\"margin-left:-3px;\"></span>";							
 								content += "</button>";
 								content += "<input type=\"hidden\" id=\"wzarr_640\" class=\"wzarr_btn\" value=\"\">";
 								content += "</td>";
 								content += "<td width=\"10%\">";
 								content += "<input type=\"hidden\" id=\"goods_640\" value=\"three\">";
-								content += "<div class=\"checkboxborderm"+(categoryItems[categoryItemCounter].show ? "Ck" : "")+" checkbox_btn\" style=\"margin-right:50%;\" tid=\""+categoryItems[categoryItemCounter].show+"\" tab=\"wxpro\" pid=\"640\"></div>";
+								content += "<div data-weibo-id=\"spn"+categoryItems[categoryItemCounter].id+"weibo\" class=\"addToCart checkboxborderm"+(categoryItems[categoryItemCounter].show ? "Ck" : "")+" checkbox_btn\" style=\"margin-right:50%;\" tid=\""+categoryItems[categoryItemCounter].show+"\" tab=\"wxpro\" pid=\""+categoryItems[categoryItemCounter].id+"\"></div>";
 								content += "</td>";
 								content += "</tr>";
 								content += "<tr>";
@@ -309,12 +306,35 @@
 				loadCategoryItems(categoryId);
 			}
 			
+			function loadCart(uid, pid, status, table, wz) {
+				console.log('pid:'+pid+' status:'+status+' table:'+table+' wz:'+wz);
+				mui.ajax('http://m.meijiexia.com/android/cart_add', {
+					data:{
+						pid: pid,
+						state: status,
+						tab: table,
+						uid: uid,
+						wz: wz
+					},
+					dataType: 'json',
+					type: 'post',
+					success: loadCartSuccess,
+					error: function(xhr, type, errorThrown) {
+						console.log(JSON.stringify(errorThrown));
+					}
+				});
+			}
+			
+			function loadCartSuccess(result) {
+				
+			}
+			
 			mui.plusReady(function() {
 //				mui('#sheet').popover('hide');
 //				var mask = mui.createMask(function() {});
 //				mask.show();
 //				mask.close();
-				
+				var uid = plus.storage.getItem('uid');
 				loadCategoryItems(0);
 				
 				mui(document.body).on('tap', ".category", function() {
@@ -345,36 +365,84 @@
 					});
   				});
   				
+  				var targetSpanId = '';
   				mui(document.body).on('tap', '.softTopNews,.softTopNewsArrow', function() {
+					targetSpanId = this.getAttribute('id');
 					mui('#sheet').popover('show');
-  				});
+				});
   				
   				mui(document.body).on('tap', '.topnews', function() {
-  					var topNewsType = document.getElementById('showType_640');
+					var topNewsType = document.getElementById(targetSpanId);
   					topNewsType.innerHTML = this.children[0].innerHTML;
   					mui('#sheet').popover('hide');
   				});
   				
-  				mui(document.body).on('tap', '#spnWeiboPopup', function() {
+  				var targetWeiboSpanId = '';
+  				mui(document.body).on('tap', '.softTopNewsWeibo', function() {
+  					targetWeiboSpanId = this.getAttribute('id');
   					mui('#divWeiboPopup').popover('show');
   				});
   				
   				mui(document.body).on('tap', '.weiboTopnewsType', function() {
-  					var topNewsType = document.getElementById('spnWeiboPopup');
+  					var topNewsType = document.getElementById(targetWeiboSpanId);
   					topNewsType.innerHTML = this.children[0].innerHTML;
   					mui('#divWeiboPopup').popover('hide');
   				});
   				
   				mui(document.body).on('tap', '.addToCart', function() {
+  					var table = '';
+  					var topNewsType = '';
+  					
+  					if (url == 'http://m.meijiexia.com/android/loadmedia') {
+  						targetSpanId = this.getAttribute('data-weixin-id');
+  						table = 'weixin';
+  						switch(document.getElementById(targetSpanId).innerHTML) {
+  							case '软广头条':
+  								topNewsType = 'three';
+  								break;
+							case '软广非头条':
+								topNewsType = 'four';
+								break;
+							default:
+								break;
+  						}
+  					} else if (url == 'http://m.meijiexia.com/android/loadweibo') {
+  						targetWeiboSpanId = this.getAttribute('data-weibo-id');
+  						table = 'weibo';
+  						switch(document.getElementById(targetWeiboSpanId).innerHTML) {
+  							case '硬广转发':
+  								topNewsType = 'one';
+  								break;
+							case '硬广直发':
+								topNewsType = 'two';
+								break;
+							case '软广转发':
+  								topNewsType = 'three';
+  								break;
+							case '软广直发':
+								topNewsType = 'four';
+								break;
+							default:
+								break;
+  						}
+  					}
+  					var pid = this.getAttribute('pid');
+  					if (this.getAttribute('tid') == 0) {
+  						this.className = "addToCart checkboxbordermCk";
+						this.setAttribute('tid', '1');
+						loadCart(uid, pid, added, table, topNewsType);
+  					} else {
+  						this.className = "addToCart checkboxborderm";
+						this.setAttribute('tid', '0');
+						loadCart(uid, pid, deleted, table, topNewsType);
+  					}
+  					
   					var marketingTemplate = mui.preload({
 					    url:'views/template/marketing.html',
-					    id:'templateMarketing.html',
-					    styles:{
-					        popGesture:"hide"
-					    }
+					    id:'templateMarketing.html'
 					});
-  					
-					mui.fire(marketingTemplate, "updateCart");
+					
+					mui.fire(marketingTemplate, 'templateRefreshCart', null);
   				});
 			});
 		</script>

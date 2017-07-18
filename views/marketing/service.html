@@ -15,15 +15,12 @@
 	  		var overallTable = 'overall';
 			var uid = 0;
 			var loadType = 1;
-			
+			var added = 1;
+	  		var deleted = 2;
+	  		
 			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						auto: false,
-						callback: pulldownRefresh
-					},
 					up: {
 						height:50,
 						auto:false,
@@ -105,6 +102,27 @@
 				loadType = 3;
 				loadCategoryItems(categoryId);
 			}
+			
+			function loadCart(uid, pid, status, table) {
+				mui.ajax('http://m.meijiexia.com/android/cart_add', {
+					data:{
+						pid: pid,
+						state: status,
+						tab: table,
+						uid: uid
+					},
+					dataType: 'json',
+					type: 'post',
+					success: loadCartSuccess,
+					error: function(xhr, type, errorThrown) {
+						console.log(JSON.stringify(errorThrown));
+					}
+				});
+			}
+			
+			function loadCartSuccess(result) {
+				
+			}
 		</script>
 	</head>
 	<body style="background: #f8f8f8;">
@@ -138,6 +156,7 @@
 		</div>
 		<script type="text/javascript">
 			mui.plusReady(function() {
+				var uid = plus.storage.getItem('uid');
 				loadCategoryItems(categoryId);
 				
 				mui(document.body).on('tap', ".category", function() {
@@ -169,15 +188,24 @@
   				});
   				
   				mui(document.body).on('tap', '.addToCart', function() {
+  					var pid = this.getAttribute('pid');
+  					console.log(overallTable);
+  					if (this.getAttribute('tid') == 0) {
+  						this.className = "addToCart checkboxbordermCk";
+						this.setAttribute('tid', '1');
+						loadCart(uid, pid, added, overallTable);
+  					} else {
+  						this.className = "addToCart checkboxborderm";
+						this.setAttribute('tid', '0');
+						loadCart(uid, pid, deleted, overallTable);
+  					}
+  					
   					var marketingTemplate = mui.preload({
 					    url:'views/template/marketing.html',
-					    id:'templateMarketing.html',
-					    styles:{
-					        popGesture:"hide"
-					    }
+					    id:'templateMarketing.html'
 					});
-  					
-					mui.fire(marketingTemplate, "updateCart");
+					
+					mui.fire(marketingTemplate, 'templateRefreshCart', null);
   				});
 			});
 		</script>
