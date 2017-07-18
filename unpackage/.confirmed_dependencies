@@ -131,7 +131,9 @@
 			"img/ad/baike.jpg",
 			"css/public.css",
 			"js/mui.min.js",
-			"img/xuanzhong.png"
+			"img/xuanzhong.png",
+			"img/list_a_h.jpg",
+			"img/list_b_h.jpg"
 		],
 		"refer": [
 			"views/details.html"
@@ -193,7 +195,11 @@
 			"css/new/ad/baike.jpg",
 			"css/index.css",
 			"img/xuanzhong.png",
-			"css/new/index.css"
+			"css/new/index.css",
+			"img/list_b.jpg",
+			"img/list_a_h.jpg",
+			"img/list_a.jpg",
+			"img/list_b_h.jpg"
 		],
 		"refer": [
 			"views/details.html"
@@ -215,7 +221,11 @@
 			"css/new/images/list_s.jpg",
 			"css/new/ad/baike.jpg",
 			"css/public.css",
-			"img/xuanzhong.png"
+			"img/xuanzhong.png",
+			"img/list_b.jpg",
+			"img/list_a.jpg",
+			"img/list_b_h.jpg",
+			"img/list_a_h.jpg"
 		]
 	},
 	"views/marketing/advertisement.html": {
@@ -231,7 +241,11 @@
 			"css/new/images/ss.png",
 			"css/new/images/fxq.png",
 			"css/public.css",
-			"img/xuanzhong.png"
+			"img/xuanzhong.png",
+			"img/list_b.jpg",
+			"img/list_a_h.jpg",
+			"img/list_a.jpg",
+			"img/list_b_h.jpg"
 		],
 		"refer": [
 			"views/details.html"
@@ -250,7 +264,9 @@
 			"css/new/images/ss.png",
 			"css/new/images/fxq.png",
 			"css/public.css",
-			"img/xuanzhong.png"
+			"img/xuanzhong.png",
+			"img/list_b_h.jpg",
+			"img/list_a.jpg"
 		],
 		"refer": [
 			"views/details.html"
@@ -272,7 +288,8 @@
 			"img/list_b.jpg",
 			"img/list_a.jpg",
 			"img/ad/baike.jpg",
-			"img/xuanzhong.png"
+			"img/xuanzhong.png",
+			"img/list_b_h.jpg"
 		]
 	},
 	"views/marketing/tool.html": {
@@ -281,7 +298,9 @@
 			"js/mui.min.js",
 			"css/mui.min.css",
 			"css/public.css",
-			"css/new/ad/baike.jpg"
+			"css/new/ad/baike.jpg",
+			"img/list_b.jpg",
+			"img/list_a_h.jpg"
 		],
 		"refer": [
 			"views/details.html"
@@ -293,7 +312,9 @@
 			"js/mui.min.js",
 			"css/mui.min.css",
 			"css/public.css",
-			"css/new/ad/baike.jpg"
+			"css/new/ad/baike.jpg",
+			"img/list_b.jpg",
+			"img/list_a_h.jpg"
 		]
 	},
 	"views/login.html": {
@@ -378,7 +399,8 @@
 			"views/member/follow.html",
 			"views/member/history.html",
 			"views/member/financedetail.html",
-			"views/member/bonus.html"
+			"views/member/bonus.html",
+			"views/member/contactus.html"
 		]
 	},
 	"views/member/topup.html": {
@@ -387,7 +409,9 @@
 			"css/mui.min.css",
 			"css/help.css",
 			"css/new/member.css",
-			"img/cz_zfb.jpg"
+			"img/cz_zfb.jpg",
+			"img/xz.jpg",
+			"img/dian.png"
 		]
 	},
 	"views/member/order.html": {
@@ -556,7 +580,23 @@
 	"views/member/bonus.html": {
 		"resources": [
 			"css/mui.min.css",
-			"css/new/member.css"
+			"css/new/member.css",
+			"js/mui.min.js",
+			"css/new/images/mine.png"
+		]
+	},
+	"views/member/financedetail.html": {
+		"resources": [
+			"css/mui.min.css",
+			"css/new/member.css",
+			"js/mui.min.js"
+		]
+	},
+	"views/member/contactus.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/new/public.css"
 		]
 	}
 }

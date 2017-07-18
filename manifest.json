@@ -349,7 +349,9 @@
 					"img/ad/baike.jpg",
 					"css/public.css",
 					"js/mui.min.js",
-					"img/xuanzhong.png"
+					"img/xuanzhong.png",
+					"img/list_a_h.jpg",
+					"img/list_b_h.jpg"
 				],
 				"refer": [
 					"views/details.html"
@@ -418,7 +420,11 @@
 					"css/new/ad/baike.jpg",
 					"css/index.css",
 					"img/xuanzhong.png",
-					"css/new/index.css"
+					"css/new/index.css",
+					"img/list_b.jpg",
+					"img/list_a_h.jpg",
+					"img/list_a.jpg",
+					"img/list_b_h.jpg"
 				],
 				"refer": [
 					"views/details.html"
@@ -441,7 +447,11 @@
 					"css/new/images/list_s.jpg",
 					"css/new/ad/baike.jpg",
 					"css/public.css",
-					"img/xuanzhong.png"
+					"img/xuanzhong.png",
+					"img/list_b.jpg",
+					"img/list_a.jpg",
+					"img/list_b_h.jpg",
+					"img/list_a_h.jpg"
 				],
 				"refer": [],
 				"priority": 0
@@ -459,7 +469,11 @@
 					"css/new/images/ss.png",
 					"css/new/images/fxq.png",
 					"css/public.css",
-					"img/xuanzhong.png"
+					"img/xuanzhong.png",
+					"img/list_b.jpg",
+					"img/list_a_h.jpg",
+					"img/list_a.jpg",
+					"img/list_b_h.jpg"
 				],
 				"refer": [
 					"views/details.html"
@@ -479,7 +493,9 @@
 					"css/new/images/ss.png",
 					"css/new/images/fxq.png",
 					"css/public.css",
-					"img/xuanzhong.png"
+					"img/xuanzhong.png",
+					"img/list_b_h.jpg",
+					"img/list_a.jpg"
 				],
 				"refer": [
 					"views/details.html"
@@ -502,7 +518,8 @@
 					"img/list_b.jpg",
 					"img/list_a.jpg",
 					"img/ad/baike.jpg",
-					"img/xuanzhong.png"
+					"img/xuanzhong.png",
+					"img/list_b_h.jpg"
 				],
 				"refer": [],
 				"priority": 0
@@ -513,7 +530,9 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"css/public.css",
-					"css/new/ad/baike.jpg"
+					"css/new/ad/baike.jpg",
+					"img/list_b.jpg",
+					"img/list_a_h.jpg"
 				],
 				"refer": [
 					"views/details.html"
@@ -526,7 +545,9 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"css/public.css",
-					"css/new/ad/baike.jpg"
+					"css/new/ad/baike.jpg",
+					"img/list_b.jpg",
+					"img/list_a_h.jpg"
 				],
 				"refer": [],
 				"priority": 0
@@ -616,7 +637,8 @@
 					"views/member/follow.html",
 					"views/member/history.html",
 					"views/member/financedetail.html",
-					"views/member/bonus.html"
+					"views/member/bonus.html",
+					"views/member/contactus.html"
 				],
 				"priority": 0
 			},
@@ -626,7 +648,9 @@
 					"css/mui.min.css",
 					"css/help.css",
 					"css/new/member.css",
-					"img/cz_zfb.jpg"
+					"img/cz_zfb.jpg",
+					"img/xz.jpg",
+					"img/dian.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -831,7 +855,27 @@
 			"views/member/bonus.html": {
 				"resources": [
 					"css/mui.min.css",
-					"css/new/member.css"
+					"css/new/member.css",
+					"js/mui.min.js",
+					"css/new/images/mine.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"views/member/financedetail.html": {
+				"resources": [
+					"css/mui.min.css",
+					"css/new/member.css",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"views/member/contactus.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/new/public.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -869,13 +913,10 @@
 				"img/index_gg.jpg",
 				"img/dd_2.png",
 				"img/lb.png",
-				"img/dian.png",
-				"img/xz.jpg",
 				"img/list_s.jpg",
 				"img/zx.png",
 				"img/rjt_xia.jpg",
 				"img/wx.jpg",
-				"img/list_a_h.jpg",
 				"img/4.png",
 				"img/close_02.png",
 				"img/mm-.png",
@@ -905,8 +946,7 @@
 				"img/verify.png",
 				"img/xx_1.jpg",
 				"img/5.png",
-				"img/cart_7.jpg",
-				"img/list_b_h.jpg"
+				"img/cart_7.jpg"
 			]
 		}
 	}

@@ -91,13 +91,13 @@ p.cpr_pp span{ color: #ff6401; margin-right: 10px;}
 .cwzx .cwzx_top p{ float: left; font-size: 1.0rem; color: #000000; margin-bottom: 0; line-height: 100px; padding-left: 3%;}
 .cwzx .cwzx_top .cwzx_right{width:70%; height:auto; overflow:hidden;float: left;margin-top: 5px;}
 .share_radio{ height:30px;  float:left;  border:1px solid #e5e5e5; text-align:center; line-height:30px; font-size:0.9rem; margin:10px 0 0 10px; cursor:pointer; padding: 0 10px;}
-.share_radio_select{ background: rgba(0, 0, 0, 0) url('../images/xz.jpg') no-repeat scroll right bottom;border:1px solid #ff6401;}
+.share_radio_select{ background: rgba(0, 0, 0, 0) url('../../img/xz.jpg') no-repeat scroll right bottom;border:1px solid #ff6401;}
 .cz_je{width:100%; height: 50px; border-bottom: 1px solid #e5e5e5;}
 .cz_je p{ float: left; font-size: 1.0rem; color: #000000; margin-bottom: 0; line-height: 50px; padding-left: 3%;}
 .cz_je input{width:70%; float: left; height: 48px; line-height: 50px; border: none;font-size: 1rem;}
 .cz_je .cz_jeleft{width:48%; float: left; margin-left: 2%;}
 .share_radioa{width:20px; height: 20px; float: left; border: 1px solid #e6e6e6; border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius:50% ;}
-.share_radioa_select{background: rgba(0, 0, 0, 0) url('../images/dian.png') no-repeat scroll center center;width:20px; height: 20px; float: left; border: 1px solid #ff6401; border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius:50% ;}
+.share_radioa_select{background: rgba(0, 0, 0, 0) url('../../img/dian.png') no-repeat scroll center center;width:20px; height: 20px; float: left; border: 1px solid #ff6401; border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius:50% ;}
 
 .cz_jeleft img{width:30px; float: left; margin: -6px 0 0 6px;}
 .cz_jeleft span{ margin-left: 3px; font-size: 0.9rem;}

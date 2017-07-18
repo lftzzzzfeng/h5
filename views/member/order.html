@@ -4,52 +4,103 @@
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	    <title></title>
-	    <script src="../../js/mui.min.js"></script>
 	    <link href="../../css/mui.min.css" rel="stylesheet"/>
 	    <link href="../../css/new/member.css" rel="stylesheet"/>
-	    <script type="text/javascript" charset="utf-8">
-	        function showRelatedPage(pageId) {
-	        	var navigation = document.getElementById('ulNavigation');
-	        	navigation.children[pageId-1].className = "hit";
-	        }
-	        
-	        mui.init();
-	        mui.plusReady(function() {
-	        	var lastPageData = plus.webview.currentWebview();
-		    	var pageId = lastPageData.pageId;
-		    	showRelatedPage(pageId);
-	        });
-	    </script>
 	</head>
 	<body>
 	  	<header class="mui-bar mui-bar-nav ss_c">
       		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
 	      	<p class="hede_p">我的订单</p>
-      		<div class="ss_right"><a href=""><img style="width:20px;" src="../../img/mine.png" /></a></div> 
+      		<div id="divSetting" class="ss_right"><a href="javascript:void(0);"><img style="width:20px;" src="../../img/mine.png" /></a></div> 
 	  	</header>
 	  	<div class="mui-content">
 	    	<div class="mine_con">
 		      	<ul id="ulNavigation">
-		        	<li><a href="javascript:void(0);">全部</a></li>
-		        	<li><a href="javascript:void(0);">待付款</a></li>
-		        	<li><a href="javascript:void(0);">待提交</a></li>
-		        	<li><a href="javascript:void(0);">执行中</a></li>
-		        	<li><a href="javascript:void(0);">完成</a></li>
+		        	<li class="navigationItem" data-page-id="1"><a href="javascript:void(0);">全部</a></li>
+		        	<li class="navigationItem" data-page-id="2"><a href="javascript:void(0);">待付款</a></li>
+		        	<li class="navigationItem" data-page-id="3"><a href="javascript:void(0);">待提交</a></li>
+		        	<li class="navigationItem" data-page-id="4"><a href="javascript:void(0);">执行中</a></li>
+		        	<li class="navigationItem" data-page-id="5"><a href="javascript:void(0);">完成</a></li>
 		      	</ul>
 	      		<div class="panes" id="loaddata">
-	      			<div class="pane" style="display:block;" id="list_content">
-	      		  		<div class="mine_cona">
-    					 	<div class="mine_top">
-                          		<a href="http://[::1]/m/guanggao-8.html"><img src="http://img.meijiexia.com/prologo/202.jpg"></a>
-				              	<div class="mine_r">
-					                <p class="r_p"><a href="http://[::1]/m/guanggao-8.html">腾讯广点通开户/品牌推广/营销产品推广</a></p>
-					                <div class="r_pp"><p class="p_k">¥1.00</p>数量:*1</div>
-				              	</div>
-                      		</div>
-	      				</div>
+	      			<div class="pane" style="display:block;" id="divListContent">
+	      		  		
 	    			</div>
 	    		</div>
 	  		</div>
 	  	</div>
 	</body>
+	<script src="../../js/mui.min.js"></script>
+    <script type="text/javascript" >
+        function showRelatedPageNav(pageId) {
+        	var navigation = document.getElementById('ulNavigation');
+        	navigation.children[pageId-1].className = "navigationItem hit";
+        	loadShowRelatedPageContent(pageId);
+		}
+        
+        function loadShowRelatedPageContent(pageId) {
+//  		mui.ajax('http://m.meijiexia.com/android/orderDetail', {
+//				data: {uid:uid},
+//				dataType: 'json',
+//				type: 'post',
+//				timeout: 10000,
+//				success: loadShowRelatedPageContentSuccess,
+//				error:function(xhr,type,errorThrown) {
+//					plus.nativeUI.toast('服务器超时，请稍后重试！');
+//					plus.nativeUI.closeWaiting();
+//				}
+//			});
+			loadShowRelatedPageContentSuccess();
+    	}
+        
+        function loadShowRelatedPageContentSuccess(result) {
+    		var targetElement = document.getElementById('divListContent');
+    		var content = "";
+    		
+    		content += "<div class=\"mine_cona\">";
+    		content += "<div class=\"mine_top\">";
+    		content += "<a href=\"http://[::1]/m/guanggao-8.html\"><img src=\"http://img.meijiexia.com/prologo/202.jpg\"></a>";
+    		content += "<div class=\"mine_r\">";
+    		content += "<p class=\"r_p\"><a href=\"http://[::1]/m/guanggao-8.html\">腾讯广点通开户/品牌推广/营销产品推广</a></p>";
+    		content += "<div class=\"r_pp\"><p class=\"p_k\">¥1.00</p>数量:*1</div>";
+    		content += "</div>";
+    		content += "</div>";
+    		content += "<div class=\"mine_a\">";
+    		content += "<div class=\"mine_aleftb\"><p>状态：未提交</p></div>";
+    		content += "<div class=\"mine_aleft\">";
+    		content += "<div class=\"mine_alefta\" style=\"float: left;\">";
+    		content += "<a target=\"_blank\" href=\"http://[::1]/m/order/subInfo?id=WE201707010924266547\">去提交</a>";
+    		content += "</div>";
+    		content += "</div>";
+    		content += "</div>";
+    		content += "</div>";
+    		
+    		targetElement.innerHTML = content;
+        }
+        
+        mui.init();
+        mui.plusReady(function() {
+        	var lastPageData = plus.webview.currentWebview();
+	    	var pageId = lastPageData.pageId;
+	    	showRelatedPageNav(pageId);
+	    	
+	    	mui(document.body).on('tap', '.navigationItem', function() {
+    			var pageId = this.getAttribute('data-page-id');
+    			mui('.navigationItem').each(function(index, element) {
+					if (pageId == element.getAttribute('data-page-id')) {
+						this.className = "navigationItem hit";
+					} else {
+						this.className = "navigationItem";
+					}
+				});
+				loadShowRelatedPageContent(pageId);
+	    	});
+	    	
+	    	mui(document.body).on('tap', '#divSetting', function() {
+	    		mui.openWindow({
+	    			id: 'setting'
+	    		});
+	    	});
+        });
+    </script>
 </html>

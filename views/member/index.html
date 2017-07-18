@@ -129,6 +129,20 @@
 					    }
 					});
 				});
+				
+				mui(document.body).on('tap', '#divHelpCenter', function() {
+					mui.openWindow({
+						url: 'helpCenter.html',
+						id: 'helpCenter.html'
+					});
+				});
+				
+				mui(document.body).on('tap', '#divContactUs', function() {
+					mui.openWindow({
+						url: 'contactus.html',
+						id: 'contactus.html'
+					});
+				});
 	        });
 	    </script>
 	</head>
@@ -225,10 +239,10 @@
 	    		</ul>
 	  		</div>
 		  	<ul class="user_h">
-		    	<div class="user_ha">
+		    	<div id="divHelpCenter" class="user_ha">
 		      		<a style="display: block;" href="">帮助中心<img src="../../img/next_r.png"></a>
 		    	</div>
-		    	<div class="user_ha">
+		    	<div id="divContactUs" class="user_ha">
 		      		<a style="display: block;" href="">联系我们<img src="../../img/next_r.png"></a>
 		    	</div>
 		    	<div class="user_ha" id="loginout">

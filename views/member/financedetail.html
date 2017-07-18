@@ -5,16 +5,6 @@
 	    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width" />
 	    <link href="../../css/mui.min.css" rel="stylesheet" />
 	    <link href="../../css/new/member.css" rel="stylesheet"/>
-	    <script src="../../js/mui.min.js"></script>
-	    <script type="text/javascript" charset="utf-8">
-	        mui.init();
-	        $(function() {	
-				$('.cai ul li').click(function() {
-					$(this).addClass('hit').siblings().removeClass('hit');
-					$('.paness>div:eq('+$(this).index()+')').show().siblings().hide();	
-				});
-			});
-	    </script>
 	    <style type="text/css">
 	    	.dropload-down{text-align:center;}
 	    </style>
@@ -23,14 +13,14 @@
 		<header class="mui-bar mui-bar-nav ss_c">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
 			<p class="hede_p">财务中心</p>
-			<div class="ss_right"><a href="http://[::1]/m/member"><img style="width:20px;" src="http://[::1]/m/statics/new/images/mine.png" /></a></div>	
+			<div class="ss_right"><a href="http://[::1]/m/member"><img style="width:20px;" src="../../img/mine.png" /></a></div>	
 		</header>
 		<div class="mui-content">
 			<div class="cai">
-				<ul>
-					<li class="hit">消费记录</li>
-					<li>充值记录</li>
-					<li>开发票</li>
+				<ul id="ulNav">
+					<li class="navItem hit" data-page-id="1">消费记录</li>
+					<li class="navItem" data-page-id="2">充值记录</li>
+					<li class="navItem" data-page-id="3">开发票</li>
 				</ul>
 				<div class="paness" id="loaddataFin">
 					<div class="panea" style="display: block;">
@@ -168,6 +158,38 @@
 			</div>
 		</div>
 	</body>
-	<script type="text/javascript">
-	</script>
+	<script src="../../js/mui.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    	function loadRelatedPageContent(pageId) {
+    		mui.ajax('http://m.meijiexia.com/android/ajax_member_info', {
+				data: {uid:uid},
+				dataType: 'json',
+				type: 'post',
+				timeout: 10000,
+				success: loadRelatedPageContentSuccess,
+				error: function(xhr,type,errorThrown) {
+					plus.nativeUI.toast('服务器超时，请稍后重试！');
+					plus.nativeUI.closeWaiting();
+				}
+			});
+    	}
+    	
+    	function loadRelatedPageContentSuccess(result) {
+    		
+    	}
+    
+        mui.init();
+        mui.plusReady(function() {
+    		mui(document.body).on('tap', '.navItem', function() {
+				var navItemInnerHtml = this.innerHTML;
+				mui('.navItem').each(function(index, element) {
+					if (navItemInnerHtml == element.innerHTML) {
+						this.className = "navItem hit";
+					} else {
+						this.className = "navItem";
+					}
+				});
+    		});
+        });
+    </script>
 </html>

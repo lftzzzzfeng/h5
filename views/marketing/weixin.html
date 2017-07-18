@@ -29,25 +29,25 @@
 		    </div>
 		    <div class="list_li" id="loaddata">
 		        <ul>		            
-	                <li class="u_li"><a href="" style="color:#fe6401;">综合</a></li>
-	                <li>
+	                <li data-nav-id="1" class="u_li sort"><a href="" style="color:#fe6401;">综合</a></li>
+	                <li data-nav-id="2" class="sort">
 	                    <a href="" style="position: relative;">
-	                        <p class="liss_p" style="margin-bottom: 0px;">粉丝</p>
+	                        <p id="pPrice" class="liss_p" style="margin-bottom: 0px;">粉丝</p>
 	                        <div class="li_d">
-	                            <img style="width:8px;" src="../../css/new/images/list_a.jpg"><br/>
-	                            <img style="width:8px;" src="../../css/new/images/list_b.jpg">
+	                            <img id="imgTimeA" style="width:8px;" src="../../css/new/images/list_a.jpg"><br/>
+	                            <img id="imgTimeB" style="width:8px;" src="../../css/new/images/list_b.jpg">
 	                        </div>
 	                    </a>
 	                </li>
-	                <li><a href="">时间</a></li>
-		            <li class="sx_li">
+	                <li data-nav-id="3" class="sort"><a href="javascript:void(0);">时间</a></li>
+		            <!--<li class="sx_li">
 		              	<a href="javascript:void(0);">
 		                	<p id="sxZimei" class="ll_p" style="margin-bottom: 0px;">
 		                		筛选
 		                		<img class="li_img" src="../../css/new/images/list_s.jpg" />
 		                	</p>
 		              	</a>
-		            </li>
+		            </li>-->
 		        </ul>
 		        <div id="list_content">
 		            <table id="divListCategoryItems" width="100%" border="0" id="li_table">
@@ -146,6 +146,9 @@
 			var added = 1;
 	  		var deleted = 2;
 			
+			var dataNavId = 1;
+	  		var priceSort = 1;
+			
 			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
@@ -160,9 +163,22 @@
 			});
 			
 			function loadCategoryItems(categoryId) {
+				var sort = '';
+				if (dataNavId == 2 && priceSort == 1) {
+					pageNumber = 1;
+					sort = 'sort_price_desc';
+				} else if (dataNavId == 2 && priceSort == 2) {
+					pageNumber = 1;
+					sort = 'sort_price_asc';
+				} else if (dataNavId == 3) {
+					pageNumber = 1;
+					sort = 'sort_time_desc';
+				}
+				
 				mui.ajax(url, {
 					data:{
 						p: pageNumber,
+						sort: sort,
 //						cate: categoryId,
 //						tab: overallTable,
 //						uid: uid
@@ -443,6 +459,40 @@
 					});
 					
 					mui.fire(marketingTemplate, 'templateRefreshCart', null);
+  				});
+  				
+  				mui(document.body).on('tap', '.sort', function() {
+					dataNavId = this.getAttribute('data-nav-id');
+					
+					mui('.sort').each(function(index, element) {
+						if (dataNavId == element.getAttribute('data-nav-id')) {
+							this.className = "u_li sort";
+							this.children[0].style = "color:#fe6401;";
+							if (dataNavId == 2) {
+								document.getElementById('pPrice').style = "margin-bottom: 0px;color:#fe6401;";	
+							}
+						} else {
+							this.className = "sort";
+							this.children[0].style = "";
+							if (dataNavId != 2) {
+								document.getElementById('pPrice').style = "margin-bottom: 0px;";
+							}
+						}
+					});
+					
+					if (dataNavId == 2) {
+						if (priceSort == 1) {
+							priceSort = 2;
+							document.getElementById('imgTimeA').src = "../../img/list_a_h.jpg";
+							document.getElementById('imgTimeB').src = "../../img/list_b.jpg";
+						} else {
+							priceSort = 1;
+							document.getElementById('imgTimeA').src = "../../img/list_a.jpg";
+							document.getElementById('imgTimeB').src = "../../img/list_b_h.jpg";	
+						}
+					}
+					
+					loadCategoryItems(categoryId);
   				});
 			});
 		</script>

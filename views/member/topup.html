@@ -8,10 +8,6 @@
 	    <style type="text/css">
 	    	.mui-toast-container{width: 90%;}
 	    </style>
-	    <script src="../../js/mui.min.js"></script>
-	    <script type="text/javascript">
-	        mui.init();
-	    </script>
 	</head>
 	<body style="background: #fff;">
 		<header class="mui-bar mui-bar-nav ss_c">
@@ -25,30 +21,30 @@
 					<p>选择金额：</p>
 					<div class="cwzx_right">
 						<div class="share_b">
-				            <div class="share_radio" tid="500">500元</div>    
+				            <div class="topupValue share_radio" tid="500">500元</div>    
 				        </div>
 				        <div class="share_b">
-				            <div class="share_radio" tid="1000">1000元</div>    
+				            <div class="topupValue share_radio" tid="1000">1000元</div>    
 			          	</div>
 			          	<div class="share_b">
-				            <div class="share_radio" tid="5000">5000元</div>    
+				            <div class="topupValue share_radio" tid="5000">5000元</div>    
 		        	  	</div>
 			          	<div class="share_b">
-			            	<div class="share_radio" tid="10000">10000元</div>    
+			            	<div class="topupValue share_radio" tid="10000">10000元</div>    
 			          	</div>
 			          	<div class="share_b">
-			            	<div class="share_radio" tid="20000">20000元</div>    
+			            	<div class="topupValue share_radio" tid="20000">20000元</div>    
 			          	</div>
 					</div>
 				</div>
 				<form action="#" id="payForm" method="post">
 					<div class="cz_je">
 						<p>充值金额：</p>
-						<input type="text" name="money" id="money" value="" placeholder="请输入金额" />
+						<input type="text" name="money" id="txtTopupValue" value="" placeholder="请输入金额" />
 					</div>
 					<div class="cz_je">
 						<div class="cz_jeleft">
-			            	<div class="share_radioa_select"></div>
+			            	<div class="share_radioa share_radioa_select"></div>
 			            	<img src="../../img/cz_zfb.jpg" /><span>支付宝</span>
 						</div>
 					</div>
@@ -62,7 +58,7 @@
 					</div>
 				</div>
 				<p class="cz_p"><a href="javascript:void(0);">了解会员请点击查看</a></p>
-				<div class="cz_btn"><a href="javascript:void(0);" id="chongzhi">充值</a></div>
+				<div class="cz_btn"><a href="javascript:void(0);" id="divTopup">充值</a></div>
 				<div class="cz_sm">
 					<p class="sm_p" style="margin-bottom: 0">充值说明</p>
 					<p class="sm_pp">
@@ -73,7 +69,34 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript">
-		</script>
+		<script src="../../js/mui.min.js"></script>
+	    <script type="text/javascript">
+	        mui.init();
+	        mui.plusReady(function() {
+	        	mui(document.body).on('tap', '.topupValue', function() {
+	        		var topValueHtml = this.innerHTML;
+	        		mui('.topupValue').each(function(index, element) {
+	        			if (topValueHtml == element.innerHTML) {
+	        				this.className = "topupValue share_radio share_radio_select";		
+	        			} else {
+	        				this.className = "topupValue share_radio";
+	        			}
+	        		});
+	        		
+	        		var topValue = parseInt(this.innerHTML, 10);
+	        		document.getElementById('txtTopupValue').value = topValue;
+	        	});
+	        	
+	        	mui(document.body).on('tap', '#divTopup', function() {
+	        		var topUpValue = document.getElementById('txtTopupValue').value;
+	        		
+	        		if (!topUpValue) {
+        				mui.alert('请选择充值金额');
+	        		} else {
+	        			mui.alert('充值喽');
+	        		}
+	        	});
+	        });
+	    </script>
 	</body>
 </html>
