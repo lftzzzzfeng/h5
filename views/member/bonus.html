@@ -6,10 +6,6 @@
 	    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width" />
 	    <link href="../../css/mui.min.css" rel="stylesheet" />
 	    <link href="../../css/new/member.css" rel="stylesheet"/>
-	    <script src="../../js/mui.min.js"></script>
-	    <script type="text/javascript" charset="utf-8">
-	        mui.init();
-	    </script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav ss_c">
@@ -20,21 +16,103 @@
 		<div class="mui-content">
 			<div class="tui">
 				<ul class="fanli">
-					<li class="hit"><a href="http://[::1]/m/member/profit">收益</a></li>
-					<li><a href="http://[::1]/m/member/buddy_friend">推广好友</a></li>
-					<li><a href="http://[::1]/m/member/buddy_order">好友订单</a></li>
-					<li><a href="http://[::1]/m/member/record">记录</a></li>
+					<li data-page-id="1" class="nav hit"><a href="javascript:void(0);">收益</a></li>
+					<li data-page-id="2" class="nav"><a href="javascript:void(0);">推广好友</a></li>
+					<li data-page-id="3" class="nav"><a href="javascript:void(0);">好友订单</a></li>
+					<li data-page-id="4" class="nav"><a href="javascript:void(0);">记录</a></li>
 				</ul>
 				<div class="paness">
-					<div class="panea" style="display: block;">
+					<div data-page-id="1" class="panea" style="display: block;">
 						<div class="tui_t">可提现金额:<span>0.00元</span></div>
 						<div class="tui_b">
 							<div class="tui_b_l"><a href="http://[::1]/m/member/withdraw">资金提现</a></div>
 							<div class="tui_b_r"><a href="http://[::1]/m/member/exchange">资金转余额</a></div>
 						</div>
 					</div>
+					<div data-page-id="2" class="panea" style="display: block;">
+						<div class="tui_hao">通过您的努力已经有<span>0</span>位好友加入媒介匣</div>
+						<div class="tui_hao_b">
+							<table border="1" cellspacing="0" width="100%" style="border-collapse: collapse" bordercolor="#E5E5E5" cellpadding="0"> 
+								<tr class="tui_hao_b_tr"> 
+									<td>手机号</td>
+									<td>姓名</td>
+									<td>时间</td> 
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div data-page-id="3" class="panea" style="display: block;" id="list_content">
+						<div class="tui_hao">您<span>0</span>位好友共生成<span>0</span>有效订单，预计返利<span>0</span>元</div>
+					</div>
+					<div data-page-id="4" class="panea" style="display: block;">
+						<div class="tui_hao">当前累计提现资金<span>0.00</span>元，可用资金转余额<span>0</span>元</div>
+						<div class="jl">
+							<ul class="biaodan">
+								<li class="hit">提现记录</li>
+								<li>转用记录</li>
+							</ul>
+							<div class="panecc">
+								<div class="pan" style="display: block;">
+									<div class="jl_t">
+										<table border="1" cellspacing="0" width="100%" style="border-collapse: collapse" bordercolor="#E5E5E5" cellpadding="0"> 
+											<tr class="jl_t_tr">
+  												<td style=" width: 30%;">时间</td>
+  												<td>金额</td>
+ 												<td>方式</td>
+  												<td>状态</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="pan">
+									<div class="jl_t">
+										<table border="1" cellspacing="0" width="100%" style="border-collapse: collapse" bordercolor="#E5E5E5" cellpadding="0"> 
+											<tr class="jl_t_tr">
+  												<td style=" width: 30%;">时间</td>
+  												<td>金额</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
 				</div>
 			</div>
 		</div>
+		<script src="../../js/mui.min.js"></script>
+	    <script type="text/javascript">
+	    	var pageId = 1;
+	    	
+	    	function showContent(pageId) {
+	    		mui('.nav').each(function(index, element) {
+					if (pageId == element.getAttribute('data-page-id')) {
+						this.className = "nav hit";
+					} else {
+						this.className = "nav";
+					}
+				});
+				
+				mui('.panea').each(function(index, element) {
+					if (pageId == element.getAttribute('data-page-id')) {
+						this.style.display = "block";
+					} else {
+						this.style.display = "none";
+					}
+				});
+	    	}
+	    	
+	        mui.init();
+	        mui.plusReady(function() {
+	        	mui(document.body).on('tap', '.nav', function() {
+        			pageId = this.getAttribute('data-page-id');
+        			showContent(pageId);
+        		});
+        		
+        		var lastPageData = plus.webview.currentWebview();
+		    	var pageId = lastPageData.pageId;
+		    	showContent(pageId);
+	        });
+	    </script>
 	</body>
 </html>

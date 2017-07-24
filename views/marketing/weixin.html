@@ -360,26 +360,26 @@
 	  				loadCategoryItems(0);
 	  			});
 	  			
-	  			mui(document.body).on("tap", ".index_tcpr", function() {
-					mui.openWindow({
-						url: '../details.html',
-					    id: 'details.html',
-					    show: {
-					      event:'titleUpdate'
-					    },
-					    waiting:{
-					      	autoShow:true,//自动显示等待框，默认为true
-					      	title:'正在加载...',//等待对话框上显示的提示内容
-					      	options:{
-				      			background:'#8f8f94',
-					        	loading:{display:'inline'}
-					      	}
-					    },
-					    extras:{
-					    	name:this.children[0].getAttribute('href')
-					    }
-					});
-  				});
+//	  			mui(document.body).on("tap", ".index_tcpr", function() {
+//					mui.openWindow({
+//						url: '../details.html',
+//					    id: 'details.html',
+//					    show: {
+//					      event:'titleUpdate'
+//					    },
+//					    waiting:{
+//					      	autoShow:true,//自动显示等待框，默认为true
+//					      	title:'正在加载...',//等待对话框上显示的提示内容
+//					      	options:{
+//				      			background:'#8f8f94',
+//					        	loading:{display:'inline'}
+//					      	}
+//					    },
+//					    extras:{
+//					    	name:this.children[0].getAttribute('href')
+//					    }
+//					});
+//				});
   				
   				var targetSpanId = '';
   				mui(document.body).on('tap', '.softTopNews,.softTopNewsArrow', function() {
@@ -406,6 +406,12 @@
   				});
   				
   				mui(document.body).on('tap', '.addToCart', function() {
+  					var uid = plus.storage.getItem('uid');
+  					if (!uid) {
+  						mui.alert('请先登录');		
+  						return ;
+  					}
+  					
   					var table = '';
   					var topNewsType = '';
   					

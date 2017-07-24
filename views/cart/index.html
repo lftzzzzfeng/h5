@@ -19,7 +19,7 @@
           		<p class="js_p">您正在安全购物环境中，请放心支付</p>
           		<a href="javascript:void(0);" id="linkRemove">移除</a>
     		</div>
-    		<div id="divCartItems">
+    		<div id="divCartItems" style="overflow-y: scroll;">
     			<p>当前购物车为空</p>
     		</div>
             <!--<div class="jylc">
@@ -158,7 +158,10 @@
 						content += "</div>";
 					}
 					
-					divCartItemElement.innerHTML += content;
+					divCartItemElement.innerHTML = content;
+					if (list.length == 0) {
+						divCartItemElement.innerHTML = '<p>当前购物车为空</p>';
+					}
 					document.getElementById('spanTotalPayment').innerHTML = totalMoney;
 					document.getElementById('spanTotalQuantity').innerHTML = quantity;
 				}
@@ -181,7 +184,6 @@
 			function loadDeleteAllCartItemsSuccess(result) {
 				var uid = plus.storage.getItem('uid');
 				loadItems(uid);
-				document.getElementById('divCartItems').innerHTML = '<p>当前购物车为空</p>';
 			}
 			
 			function product(productId, productType, quantity) {

@@ -22,80 +22,26 @@
 					<li class="navItem" data-page-id="2">充值记录</li>
 					<li class="navItem" data-page-id="3">开发票</li>
 				</ul>
-				<div class="paness" id="loaddataFin">
-					<div class="panea" style="display: block;">
+				<div class="paness">
+					<div data-content-id="first" class="panea" id="divConsumptionHistory" style="display: block;">
 						<div class="cai_t">账号余额:<span>149410.00</span></div>
 						<div class="cai_b"><a href="http://[::1]/m/member/recharge">充值</a></div>
 						<div class="jl_t">
-							<table id="list_fin_content" border="1" cellspacing="0" width="95%" style=" margin:0 auto ; border-collapse: collapse" bordercolor="#E5E5E5" cellpadding="0"> 
-								<tr class="jl_t_tr">
-  									<td style=" width: 35%;">时间</td>
-  									<td>金额</td>
- 									<td>方式</td>
-								</tr> 
-								<tr class="jl_t_td">
-  									<td style=" width: 35%;">
-				                        2017-07-01					                       
-  									</td>
-  									<td>164.00</td>
-  									<td>
-		                        		余额支付
-  									</td>
-								</tr>
-								<tr class="jl_t_td">
-  									<td style=" width: 35%;">
-			                        	2017-06-30					                       
-  									</td>
-  									<td>6.00</td>
-  									<td>
-		                        		余额支付
-  									</td>
-								</tr>
-								<tr class="jl_t_td">
-  									<td style=" width: 35%;">
-				                        2017-06-15					                       
-  									</td>
-  									<td>50.00</td>
-  									<td>
-                						余额支付
-  									</td>
-								</tr>
-								<tr class="jl_t_td">
-  									<td style=" width: 35%;">
-				                        2017-06-15					                       
-  									</td>
-  									<td>50.00</td>
-  									<td>
-				                        余额支付
-  									</td>
-								</tr>
-								<tr class="jl_t_td">
-  									<td style=" width: 35%;">
-				                        2017-06-15					                       
-  									</td>
-  									<td>50.00</td>
-  									<td>
-		                        		余额支付
-  									</td>
-								</tr>
+							<table id="tblConsumptionHistory" border="1" cellspacing="0" width="95%" style=" margin:0 auto ; border-collapse: collapse" bordercolor="#E5E5E5" cellpadding="0"> 
+								
 							</table>
 						</div>
 					</div>
-					<div class="panea" id="loaddataPay">
+					<div data-content-id="second" class="panea" id="divTopupHistory">
 						<div class="cai_t">账号余额:<span>149410.00</span></div>
 						<div class="cai_b"><a href="http://[::1]/m/member/recharge">充值</a></div>
 						<div class="cai_biao">
-							<table id="list_pay_content" border="1" cellspacing="0" width="100%" style="border-collapse: collapse" bordercolor="#E5E5E5" cellpadding="0"> 
-								<tr class="tui_hao_b_tr"> 
-									<td>方式</td>
-									<td>金额</td>
-									<td>时间</td>
-									<td>状态</td>
-								</tr>
+							<table id="tblTopupHistory" border="1" cellspacing="0" width="100%" style="border-collapse: collapse" bordercolor="#E5E5E5" cellpadding="0"> 
+								
 							</table>
 						</div>
 					</div>
-					<div class="panea">
+					<div data-content-id="third" class="panea" id="divInvoice">
 						<div class="kai_t">
 							<div class="kai_t_l">可开发票金额<span> ¥0.00</span></div>
 							<div class="kai_t_r"><a href="">我要开发票</a></div>
@@ -114,42 +60,8 @@
 						<div class="kai_b">
 							<div class="kai_b_t">开票历史</div>
 							<div class="kai_b_b">
-								<table border="1" cellspacing="0" width="100%" bordercolor="#E5E5E5" cellpadding="0"> 
-									<tr class="jl_t_tr">
-	  									<td style=" width: 35%;">申请时间</td>
-	  									<td>金额</td>
-	 									<td>状态</td>
-	  									<td>更多</td>
-									</tr> 
-									<tr class="jl_t_td">
-	  									<td style=" width: 35%;">2017-05-22</td>
-	  									<td>100.00</td>
-	  									<td>支付宝</td>
-	  									<td>
-	  										<div class="login-header"><a href="javascript:void(0);"><img style="width: 18px; padding-top: 4px;" src="http://[::1]/m/statics/new/images/1.png" /></a></div>
-												<div class="login">
-	    											<div class="login-title"><span><a href="javascript:void(0);" class="close-login">关闭</a></span></div>
-		    										<div class="login-input-content">
-		    											<div class="login-input-content_t">快递公司：顺丰快递公司</div>
-		    											<div class="login-input-content_t">快递单号：6542318976547890</div>
-		    											<div class="login-input-content_t">开票时间：2017-05-26</div>
-		    										</div>
-	    										</div>
-											<div class="login-bg"></div>
-	  									</td>
-	  								</tr> 
-									<tr class="jl_t_td">
-	  									<td style=" width: 30%;">&nbsp;</td>
-	  									<td>&nbsp;</td>
-	  									<td>&nbsp;</td>
-	  									<td></td>
-									</tr> 
-									<tr class="jl_t_td">
-	  									<td style=" width: 30%;">&nbsp;</td>
-	  									<td>&nbsp;</td>
-	  									<td>&nbsp;</td>
-	  									<td>&nbsp;</td>
-									</tr>
+								<table id="tblInvoice" border="1" cellspacing="0" width="100%" bordercolor="#E5E5E5" cellpadding="0"> 
+									
 								</table>
 							</div>
 						</div>
@@ -160,28 +72,120 @@
 	</body>
 	<script src="../../js/mui.min.js"></script>
     <script type="text/javascript" charset="utf-8">
-    	function loadRelatedPageContent(pageId) {
-    		mui.ajax('http://m.meijiexia.com/android/ajax_member_info', {
-				data: {uid:uid},
-				dataType: 'json',
-				type: 'post',
-				timeout: 10000,
-				success: loadRelatedPageContentSuccess,
-				error: function(xhr,type,errorThrown) {
-					plus.nativeUI.toast('服务器超时，请稍后重试！');
-					plus.nativeUI.closeWaiting();
-				}
-			});
+    	var pageId = 1;
+    	
+    	function showContent() {
+    		pageId = Number(pageId);
+    		switch(pageId) {
+    			case 1:
+    				document.getElementById('divConsumptionHistory').style.display = "block";
+    				document.getElementById('divTopupHistory').style.display = "none";
+    				document.getElementById('divInvoice').style.display = "none";
+    				break;
+				case 2:
+					document.getElementById('divConsumptionHistory').style.display = "none";
+    				document.getElementById('divTopupHistory').style.display = "block";
+    				document.getElementById('divInvoice').style.display = "none";
+					break;
+				case 3:
+					document.getElementById('divConsumptionHistory').style.display = "none";
+    				document.getElementById('divTopupHistory').style.display = "none";
+    				document.getElementById('divInvoice').style.display = "block";
+					break;
+    		}
     	}
     	
-    	function loadRelatedPageContentSuccess(result) {
-    		
+    	function loadRelatedPageContent() {
+//  		mui.ajax('http://m.meijiexia.com/android/ajax_member_info', {
+//				data: {uid:uid},
+//				dataType: 'json',
+//				type: 'post',
+//				timeout: 10000,
+//				success: loadRelatedPageContentSuccess,
+//				error: function(xhr,type,errorThrown) {
+//					plus.nativeUI.toast('服务器超时，请稍后重试！');
+//					plus.nativeUI.closeWaiting();
+//				}
+//			});
+			loadRelatedPageContentSuccess();
+    	}
+    	
+    	function loadRelatedPageContentSuccess() {
+    		pageId = Number(pageId);
+    		switch(pageId) {
+    			case 1:
+    				var tartgetElement = document.getElementById('tblConsumptionHistory');
+    				var content = "";
+    				content += "<tr class=\"jl_t_tr\">";
+    				content += "<td style=\"width:35%;\">时间</td>";
+    				content += "<td>金额</td>";
+    				content += "<td>方式</td>";
+    				content += "</tr>";
+    				
+    				content += "<tr class=\"jl_t_td\">";
+    				content += "<td style=\"width:35%;\">";
+    				content += "2017-07-01";
+    				content += "</td>";
+    				content += "<td>164.00</td>";
+    				content += "<td>余额支付</td>";
+    				content += "</tr>";
+    				
+    				tartgetElement.innerHTML = content;
+    				break;
+				case 2:
+					var targetElement = document.getElementById('tblTopupHistory');
+					var content = "";
+					content += "<tr class=\"tui_hao_b_tr\">";
+					content += "<td>方式</td>";
+					content += "<td>金额</td>";
+					content += "<td>时间</td>";
+					content += "<td>状态</td>";
+					content += "</tr>";
+					
+					targetElement.innerHTML = content;
+					break;
+				case 3:
+					var targetElement = document.getElementById('tblInvoice');
+					var content = "";
+					
+					content += "<tr class=\"jl_t_tr\">";
+					content += "<td style=\"width: 35%;\">申请时间</td>";
+					content += "<td>金额</td>";
+					content += "<td>状态</td>";
+					content += "<td>更多</td>";
+					content += "</tr>";
+					
+					content += "<tr class=\"jl_t_td\">";
+					content += "<td style=\"width: 35%;\">2017-05-22</td>";
+					content += "<td>100.00</td>";
+					content += "<td>支付宝</td>";
+					content += "<td>";
+					content += "<div class=\"login-header\"><a href=\"javascript:void(0);\"><img style=\"width: 18px; padding-top: 4px;\" src=\"../../img/1.png\" /></a></div>";
+					content += "<div class=\"login\">";
+					content += "<div class=\"login-title\"><span><a href=\"javascript:void(0);\" class=\"close-login\">关闭</a></span></div>";
+					content += "<div class=\"login-input-content\">";
+					content += "<div class=\"login-input-content_t\">快递公司：顺丰快递公司</div>";
+					content += "<div class=\"login-input-content_t\">快递单号：6542318976547890</div>";
+					content += "<div class=\"login-input-content_t\">开票时间：2017-05-26</div>";
+					content += "</div>";
+					content += "</div>";
+					content += "<div class=\"login-bg\"></div>";
+					content += "</td>";
+					content += "</tr>";
+					
+					targetElement.innerHTML = content;
+					break;
+				default:
+					break;
+    		}
+    		showContent();
     	}
     
         mui.init();
         mui.plusReady(function() {
-    		mui(document.body).on('tap', '.navItem', function() {
-				var navItemInnerHtml = this.innerHTML;
+        	mui(document.body).on('tap', '.navItem', function() {
+        		pageId = this.getAttribute('data-page-id');
+        		var navItemInnerHtml = this.innerHTML;
 				mui('.navItem').each(function(index, element) {
 					if (navItemInnerHtml == element.innerHTML) {
 						this.className = "navItem hit";
@@ -189,7 +193,10 @@
 						this.className = "navItem";
 					}
 				});
+				loadRelatedPageContent();
     		});
+    		loadRelatedPageContent();
+    		showContent();
         });
     </script>
 </html>

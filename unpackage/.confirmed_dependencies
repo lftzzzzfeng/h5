@@ -289,7 +289,8 @@
 			"img/list_a.jpg",
 			"img/ad/baike.jpg",
 			"img/xuanzhong.png",
-			"img/list_b_h.jpg"
+			"img/list_b_h.jpg",
+			"img/list_a_h.jpg"
 		]
 	},
 	"views/marketing/tool.html": {
@@ -400,7 +401,8 @@
 			"views/member/history.html",
 			"views/member/financedetail.html",
 			"views/member/bonus.html",
-			"views/member/contactus.html"
+			"views/member/contactus.html",
+			"index.html"
 		]
 	},
 	"views/member/topup.html": {
@@ -589,7 +591,8 @@
 		"resources": [
 			"css/mui.min.css",
 			"css/new/member.css",
-			"js/mui.min.js"
+			"js/mui.min.js",
+			"img/1.png"
 		]
 	},
 	"views/member/contactus.html": {

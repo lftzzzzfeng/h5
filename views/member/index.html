@@ -119,7 +119,7 @@
 					});
 				});
 				
-				mui(document.body).on('tap', '#ulBonus', function() {
+				mui(document.body).on('tap', '.navBonus', function() {
 					var pageId = this.getAttribute('data-page-id');
 					mui.openWindow({
 						url: 'bonus.html',
@@ -143,12 +143,19 @@
 						id: 'contactus.html'
 					});
 				});
+				
+				mui(document.body).on('tap', '#aBack', function() {
+					var targetTemplate = mui.preload({
+					    id:'HBuilder'
+					});
+					mui.fire(targetTemplate, 'refreshPage', null);
+				});
 	        });
 	    </script>
 	</head>
 	<body>
 	  	<header class="mui-bar mui-bar-nav ss_c">
-	      	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
+	      	<a id="aBack" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #999;"></a>
 	      	<p class="hede_p">我的媒介匣</p>
 	      	<div class="ss_right"><a href=""><img src="../../img/home.png" /></a></div> 
 	  	</header>
@@ -224,16 +231,16 @@
 	  		<div class="user_dd">
 	    		<div class="user_ddtop"><p>推广返利<a href="javascript:void(0);">邀请好友获5%返利<!--<img src="../../img/next_r.png">--></a></p></div>
 	    		<ul id="ulBonus">
-	      			<li data-page-id="1">
+	      			<li class="navBonus" data-page-id="1">
 	      				<a href="javascript:void(0);"><p class="jq_p" id="cashNum">￥0</p>收益</a>
 	      			</li>
-	      			<li data-page-id="2">
+	      			<li class="navBonus" data-page-id="2">
 	        			<a href="javascript:void(0);"><p class="jq_p" id="userNum">0</p>推广好友</a>
 	      			</li>
-	      			<li data-page-id="3">
+	      			<li class="navBonus" data-page-id="3">
 	        			<a href="javascript:void(0);"><p class="jq_p" id="orderNum">0</p>好友订单</a>
 	      			</li>
-	      			<li data-page-id="4">
+	      			<li class="navBonus" data-page-id="4">
 	        			<a href="javascript:void(0);"><p class="jq_p" id="allNum">0</p>记录</a>
 	      			</li>
 	    		</ul>
